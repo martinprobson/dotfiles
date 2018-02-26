@@ -85,7 +85,7 @@ syntax enable
 "colorscheme molokai
 colorscheme zenburn
 "set guifont=monaco\ 11
-set guifont=SourceCodePro-Regular\ 11
+set guifont=Source\ Code\ Pro\ 11
 "
 " Enable folding and allow folding using the space bar
 set foldmethod=indent
