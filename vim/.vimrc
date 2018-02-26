@@ -47,6 +47,8 @@ Plug 'derekwyatt/vim-scala'
 Plug 'motus/pig.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 filetype plugin indent on	" Required
@@ -86,7 +88,8 @@ syntax enable
 colorscheme zenburn
 "set guifont=monaco\ 11
 set guifont=Source\ Code\ Pro\ 11
-"
+" set airline theme
+let g:airline_theme='zenburn'
 " Enable folding and allow folding using the space bar
 set foldmethod=indent
 set foldlevel=99
