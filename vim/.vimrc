@@ -42,7 +42,7 @@ Plug 'vim-scripts/Zenburn'
 " features
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'ajh17/VimCompletesMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
 Plug 'motus/pig.vim'
 Plug 'scrooloose/nerdtree'
