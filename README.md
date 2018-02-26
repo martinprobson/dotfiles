@@ -3,6 +3,7 @@
 -  vim            > Vim config and plugins.
 -  bash           > bashrc/dircolors
 -  fonts          > Nice monospaced fonts for terminal and vim.
+-  terminator     > [terminator](https://gnometerminator.blogspot.co.uk/p/introduction.html) configuration.
 
 ## Usage
 These dotfiles can be managed using [gnu stow](http://www.gnu.org/software/stow/), a free, portable, lightweight symlink farm manager.
