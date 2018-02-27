@@ -87,7 +87,9 @@ syntax enable
 "colorscheme molokai
 colorscheme zenburn
 "set guifont=monaco\ 11
-set guifont=Source\ Code\ Pro\ 11
+set guifont=Source\ Code\ Pro\ 12
+" Hide the toolbar in gvim (I never use it)
+set guioptions -=T
 " set airline theme
 let g:airline_theme='zenburn'
 " Enable folding and allow folding using the space bar
