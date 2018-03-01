@@ -40,15 +40,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/Zenburn'
 
 " features
-Plug 'tmhedberg/SimpylFold'
+"Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
-Plug 'motus/pig.vim'
+"Plug 'motus/pig.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'jlanzarotta/bufexplorer'
+"Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/ctrlp.vim'
 
 call plug#end()
 filetype plugin indent on	" Required
@@ -80,7 +81,7 @@ function! HighlightSearch()
   endif
 endfunction
 " Martin 26/05/2017 - End
-
+set t_Co=256
 syntax enable
 "colorscheme slate
 " Martin 20/02/2018 - use zenburn colour scheme
@@ -127,5 +128,11 @@ au BufNewFile,BufRead *.q set filetype=hive expandtab
 map <silent> <C-n> :NERDTreeToggle<CR>
 " for .hql files
 "
-
-	
+" CTRL-P
+let g:ctrlp_map = '<C-p>' 
+let g:ctrlp_cmd = 'CtrlP'
+nnoremap <leader>be :CtrlPBuffer<CR>
+let g:ctrlp_custom_ignore = {
+\ 'dir': '\v[\/](\.git|\.hg|\.svn|target)$',
+\ 'file': '\v\.(class|zip)$',
+\ }
