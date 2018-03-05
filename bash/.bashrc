@@ -131,6 +131,6 @@ set -o vi
 alias ll="ls -l"
 alias h="history"
 
-GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
