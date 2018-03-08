@@ -130,6 +130,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 set -o vi
 alias ll="ls -l"
 alias h="history"
+alias vi='vim'
 
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
