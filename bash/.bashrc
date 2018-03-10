@@ -125,7 +125,8 @@ export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Remove as causes issues with history numbering 10/03/2018
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Martin 15/08/2016
 set -o vi
 alias ll="ls -l"
