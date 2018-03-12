@@ -41,6 +41,7 @@ Plug 'vim-scripts/Zenburn'
 
 " features
 "Plug 'tmhedberg/SimpylFold'
+Plug 'autowitch/hive.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
