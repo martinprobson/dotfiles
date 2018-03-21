@@ -51,7 +51,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
-
+Plug 'https://github.com/suan/vim-instant-markdown.git'
 call plug#end()
 filetype plugin indent on	" Required
 set modeline 
