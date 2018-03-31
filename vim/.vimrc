@@ -40,10 +40,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/Zenburn'
 
 " features
-"Plug 'tmhedberg/SimpylFold'
 Plug 'autowitch/hive.vim'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
 "Plug 'motus/pig.vim'
 Plug 'scrooloose/nerdtree'
