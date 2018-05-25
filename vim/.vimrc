@@ -51,6 +51,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'https://github.com/suan/vim-instant-markdown.git'
+" Install vimwiki 23/05/2018
+Plug 'https://github.com/vimwiki/vimwiki.git'
 call plug#end()
 filetype plugin indent on	" Required
 set modeline 
@@ -136,3 +138,10 @@ let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](\.git|\.hg|\.svn|target)$',
 \ 'file': '\v\.(class|zip)$',
 \ }
+"
+" Instant markdown preview
+let g:instant_markdown_autostart = 0
+map <leader>md :InstantMarkdownPreview
+" For vimwiki to use markdown syntax
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
+let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
