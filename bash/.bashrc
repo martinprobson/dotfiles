@@ -132,6 +132,7 @@ set -o vi
 alias ll="ls -l"
 alias h="history"
 alias vi='vim'
+alias gits='git status'
 
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
