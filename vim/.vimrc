@@ -92,7 +92,9 @@ colorscheme zenburn
 "set guifont=monaco\ 11
 set guifont=Source\ Code\ Pro\ 12
 " Hide the toolbar in gvim (I never use it)
-set guioptions -=T
+if has("gui_running")
+    set guioptions -=T
+endif
 " set airline theme
 let g:airline_theme='zenburn'
 " Enable folding and allow folding using the space bar
