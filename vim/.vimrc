@@ -147,3 +147,13 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 " Turn off sounds
 set belloff=all
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+" Martin 25/06/2018 - Add airline tabline extension 
+let g:airline#extensions#tabline#fnamemod = ':t'
+" Martin 25/06/2018 - Shortcuts to move to next/prev buffer
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
+
