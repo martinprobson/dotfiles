@@ -129,6 +129,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Martin 15/08/2016
 set -o vi
+export EDITOR=vi
 alias ll="ls -l"
 alias h="history"
 alias vi='vim'

@@ -158,4 +158,4 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Martin 25/06/2018 - Shortcuts to move to next/prev buffer
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
-
+"
