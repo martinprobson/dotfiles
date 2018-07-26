@@ -52,11 +52,17 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
-Plug 'https://github.com/vimwiki/vimwiki.git'
+Plug 'vimwiki/vimwiki'
 " Install vim-go 18/07/2018
-Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
+"Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
+" Install ultisnips 24/07/2018
+"Plug 'SirVer/ultisnips'
+" Install actual snippets 24/07/2018
+"Plug 'honza/vim-snippets'
+"
 call plug#end()
 filetype plugin indent on	" Required
+filetype plugin on
 set modeline 
 set showmatch 
 set showcmd 
@@ -194,3 +200,11 @@ let g:go_highlight_types = 1
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 number
 " GOLANG SUPPORT (vim-go) - END
 "
+" ultisnips configuration 24/07/2018
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" ultisnips configuration - END
