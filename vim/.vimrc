@@ -54,7 +54,7 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
 Plug 'vimwiki/vimwiki'
 " Install vim-go 18/07/2018
-"Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
+Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
 " Install ultisnips 24/07/2018
 "Plug 'SirVer/ultisnips'
 " Install actual snippets 24/07/2018
@@ -191,12 +191,19 @@ function! s:build_go_files()
 endfunction
 " Run GoBuild with the <leader>b command
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+" map \d to start Go debug and \q to stop it.
+autocmd FileType go nmap <leader>d :GoDebugStart<CR>
+autocmd FileType go nmap <leader>q :GoDebugStop<CR>
 " Run GoCoverageToggle with the <leader>c command
 autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
+"
+" Use 'goimports' instead of 'gofmt' so that missing imports are automatically
+" added.
+let g:go_fmt_command = "goimports"
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 number
 " GOLANG SUPPORT (vim-go) - END
 "
