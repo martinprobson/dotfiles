@@ -155,6 +155,8 @@ map <leader>md :InstantMarkdownPreview
 " For vimwiki to use markdown syntax
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" Turn off vimwiki menu in gui as seems to cause issues - Martin 10/10/2018
+let g:vimwiki_menu=''
 " Turn off sounds
 set belloff=all
 " Enable the list of buffers
