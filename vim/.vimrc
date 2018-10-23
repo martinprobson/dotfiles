@@ -16,6 +16,11 @@
 set nocompatible
 set hidden
 set confirm
+set hlsearch
+set path+=**
+set wildmenu
+set number
+
 filetype off
 
 set undodir=~/.vim/undo//
@@ -66,7 +71,7 @@ filetype plugin on
 set modeline 
 set showmatch 
 set showcmd 
-set autochdir
+"set autochdir
 "
 " Martin 26/05/2017 - Add statusline showing full pathname
 " See
