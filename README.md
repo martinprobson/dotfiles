@@ -4,6 +4,7 @@
 -  bash           > bashrc/dircolors
 -  fonts          > Nice monospaced fonts for terminal and vim.
 -  terminator     > [terminator](https://gnometerminator.blogspot.co.uk/p/introduction.html) configuration.
+- putty           > Contains a windows reg file to import that gives putty more sensible defaults. Once imported, thios will give any new session created in putty more sensible defaults.
 -  installed_software_DD-MM-YYYY > Manually installed software (via apt-get).
 
 ## Usage
