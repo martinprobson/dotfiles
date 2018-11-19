@@ -143,6 +143,7 @@ au BufNewFile,BufRead *.hql set filetype=hive expandtab
 au BufNewFile,BufRead *.q set filetype=hive expandtab
 " Martin 08/01/2018 shortcut (CTRL-N) for NERDTree
 map <silent> <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 " for .hql files
 "
 " CTRL-P
