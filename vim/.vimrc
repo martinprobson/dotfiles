@@ -71,7 +71,7 @@ filetype plugin on
 set modeline 
 set showmatch 
 set showcmd 
-"set autochdir
+set autochdir
 "
 " Martin 26/05/2017 - Add statusline showing full pathname
 " See
@@ -202,6 +202,8 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " map \d to start Go debug and \q to stop it.
 autocmd FileType go nmap <leader>d :GoDebugStart<CR>
 autocmd FileType go nmap <leader>q :GoDebugStop<CR>
+" toggle between source code and test source code
+autocmd FileType go nmap <leader>a :GoAlternate<CR>
 " Run GoCoverageToggle with the <leader>c command
 autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 let g:go_highlight_functions = 1
