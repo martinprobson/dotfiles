@@ -3,5 +3,34 @@
     "editor.fontSize": 15,
     "window.zoomLevel": 1.75,
     "terminal.external.linuxExec": "terminator",
-    "terminal.explorerKind": "external"
+    "terminal.explorerKind": "external",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor"
+                }
+            ]
+        },
+    ]
 }
