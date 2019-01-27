@@ -8,6 +8,8 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["<leader>","e"],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
             "after": [],
             "commands": [
                 {
@@ -18,4 +20,25 @@
     ],
     "editor.lineNumbers": "relative"
 
+}
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor"
+                }
+            ]
+        },
+    ]
 }
