@@ -71,7 +71,7 @@ filetype plugin on
 set modeline 
 set showmatch 
 set showcmd 
-"set autochdir
+set autochdir
 "
 " Martin 26/05/2017 - Add statusline showing full pathname
 " See
