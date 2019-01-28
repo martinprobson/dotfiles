@@ -1,7 +1,44 @@
 {
     "editor.fontFamily": "'Source Code Pro'",
-    "editor.fontSize": 15,
-    "window.zoomLevel": 1.75,
+    "editor.fontSize": 16,
+    "window.zoomLevel": 0,
     "terminal.external.linuxExec": "terminator",
-    "terminal.explorerKind": "external"
+    "terminal.explorerKind": "external",
+    "editor.minimap.enabled": false,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>","e"],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ]
+        }
+    ],
+    "editor.lineNumbers": "relative"
+
+}
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor"
+                }
+            ]
+        },
+    ]
 }

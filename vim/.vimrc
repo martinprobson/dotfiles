@@ -19,7 +19,17 @@ set confirm
 set hlsearch
 set path+=**
 set wildmenu
-set number
+" Vim absolute and relative line numbers
+" Use Hybrid line numbers and switch between hybrid and absolute automatically
+if v:version < 704
+	set number relativenumber
+else
+	augroup numbertoggle
+		autocmd!
+		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+	augroup end
+endif
 
 filetype off
 
@@ -150,6 +160,7 @@ let NERDTreeQuitOnOpen = 1
 let g:ctrlp_map = '<C-p>' 
 let g:ctrlp_cmd = 'CtrlP'
 nnoremap <leader>be :CtrlPBuffer<CR>
+nnoremap <leader>e :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](\.git|\.hg|\.svn|target)$',
 \ 'file': '\v\.(class|zip)$',
@@ -202,6 +213,8 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " map \d to start Go debug and \q to stop it.
 autocmd FileType go nmap <leader>d :GoDebugStart<CR>
 autocmd FileType go nmap <leader>q :GoDebugStop<CR>
+" toggle between source code and test source code
+autocmd FileType go nmap <leader>a :GoAlternate<CR>
 " Run GoCoverageToggle with the <leader>c command
 autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 let g:go_highlight_functions = 1
