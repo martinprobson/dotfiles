@@ -24,11 +24,12 @@ set wildmenu
 if v:version < 704
 	set number relativenumber
 else
-	augroup numbertoggle
-		autocmd!
-		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-	augroup end
+	set number relativenumber
+"	augroup numbertoggle
+"		autocmd!
+"		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+"	augroup end
 endif
 
 filetype off
