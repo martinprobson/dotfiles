@@ -26,6 +26,7 @@ if v:version < 704
 else
 	set number relativenumber
 "	augroup numbertoggle
+
 "		autocmd!
 "		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 "		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
@@ -240,5 +241,3 @@ let g:UltiSnipsEditSplit="vertical"
 "
 " Map jj to <ESC> key
 inoremap jj <ESC>
-au VimEnter * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
