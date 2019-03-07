@@ -118,7 +118,11 @@ let g:zenburn_alternate_Visual = 1
 let g:zenburn_old_Visual = 1
 colorscheme zenburn
 "set guifont=monaco\ 11
-set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
+if has("win32")
+	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
+else
+	set guifont=Source\ Code\ Pro\ 12
+endif
 " Hide the toolbar in gvim (I never use it)
 if has("gui_running")
     set guioptions -=T
