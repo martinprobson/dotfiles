@@ -76,6 +76,7 @@ Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
 "Plug 'SirVer/ultisnips'
 " Install actual snippets 24/07/2018
 "Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 "
 call plug#end()
 filetype plugin indent on	" Required
