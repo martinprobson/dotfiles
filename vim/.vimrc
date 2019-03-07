@@ -26,7 +26,6 @@ if v:version < 704
 else
 	set number relativenumber
 "	augroup numbertoggle
-
 "		autocmd!
 "		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 "		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
@@ -114,9 +113,12 @@ syntax enable
 "colorscheme slate
 " Martin 20/02/2018 - use zenburn colour scheme
 "colorscheme molokai
+" Martin 28/02/2019 - Change some zenburn options
+let g:zenburn_alternate_Visual = 1
+let g:zenburn_old_Visual = 1
 colorscheme zenburn
 "set guifont=monaco\ 11
-set guifont=Source\ Code\ Pro\ 12
+set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
 " Hide the toolbar in gvim (I never use it)
 if has("gui_running")
     set guioptions -=T
