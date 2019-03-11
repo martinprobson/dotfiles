@@ -181,6 +181,9 @@ map <leader>md :InstantMarkdownPreview
 " For vimwiki to use markdown syntax
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" disable the <tab> mapping provied by vimwiki as this interferes with
+" SuperTab
+let g:vimwiki_table_mappings = 0
 " Turn off vimwiki menu in gui as seems to cause issues - Martin 10/10/2018
 let g:vimwiki_menu=''
 " Turn off sounds
@@ -239,11 +242,11 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 numb
 "
 " ultisnips configuration 24/07/2018
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 " ultisnips configuration - END
 "
 " Map jj to <ESC> key
