@@ -4,6 +4,7 @@
 -  bash           > bashrc/dircolors
 -  fonts          > Nice monospaced fonts for terminal and vim.
 -  terminator     > [terminator](https://gnometerminator.blogspot.co.uk/p/introduction.html) configuration.
+-  IntelliJ       > IntelliJ settings file and ideavimrc for vim plugin
 -  installed_software_DD-MM-YYYY > Manually installed software (via apt-get).
 
 ## Usage

@@ -1,0 +1,7 @@
+
+" Map jj to <ESC> key
+inoremap jj <ESC>
+set number relativenumber
+set showmode
+nmap <leader>l gt<CR>
+nmap <leader>h gT<CR>
