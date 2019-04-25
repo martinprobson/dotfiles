@@ -19,7 +19,18 @@ set confirm
 set hlsearch
 set path+=**
 set wildmenu
-set number
+" Vim absolute and relative line numbers
+" Use Hybrid line numbers and switch between hybrid and absolute automatically
+if v:version < 704
+	set number relativenumber
+else
+	set number relativenumber
+"	augroup numbertoggle
+"		autocmd!
+"		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+"	augroup end
+endif
 
 filetype off
 
@@ -64,6 +75,7 @@ Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
 "Plug 'SirVer/ultisnips'
 " Install actual snippets 24/07/2018
 "Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 "
 call plug#end()
 filetype plugin indent on	" Required
@@ -71,7 +83,7 @@ filetype plugin on
 set modeline 
 set showmatch 
 set showcmd 
-"set autochdir
+set autochdir
 "
 " Martin 26/05/2017 - Add statusline showing full pathname
 " See
@@ -101,9 +113,16 @@ syntax enable
 "colorscheme slate
 " Martin 20/02/2018 - use zenburn colour scheme
 "colorscheme molokai
+" Martin 28/02/2019 - Change some zenburn options
+let g:zenburn_alternate_Visual = 1
+let g:zenburn_old_Visual = 1
 colorscheme zenburn
 "set guifont=monaco\ 11
-set guifont=Source\ Code\ Pro\ 12
+if has("win32")
+	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
+else
+	set guifont=Source\ Code\ Pro\ 12
+endif
 " Hide the toolbar in gvim (I never use it)
 if has("gui_running")
     set guioptions -=T
@@ -143,12 +162,14 @@ au BufNewFile,BufRead *.hql set filetype=hive expandtab
 au BufNewFile,BufRead *.q set filetype=hive expandtab
 " Martin 08/01/2018 shortcut (CTRL-N) for NERDTree
 map <silent> <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 " for .hql files
 "
 " CTRL-P
 let g:ctrlp_map = '<C-p>' 
 let g:ctrlp_cmd = 'CtrlP'
 nnoremap <leader>be :CtrlPBuffer<CR>
+nnoremap <leader>e :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](\.git|\.hg|\.svn|target)$',
 \ 'file': '\v\.(class|zip)$',
@@ -160,6 +181,9 @@ map <leader>md :InstantMarkdownPreview
 " For vimwiki to use markdown syntax
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" disable the <tab> mapping provied by vimwiki as this interferes with
+" SuperTab
+let g:vimwiki_table_mappings = 0
 " Turn off vimwiki menu in gui as seems to cause issues - Martin 10/10/2018
 let g:vimwiki_menu=''
 " Turn off sounds
@@ -201,6 +225,8 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " map \d to start Go debug and \q to stop it.
 autocmd FileType go nmap <leader>d :GoDebugStart<CR>
 autocmd FileType go nmap <leader>q :GoDebugStop<CR>
+" toggle between source code and test source code
+autocmd FileType go nmap <leader>a :GoAlternate<CR>
 " Run GoCoverageToggle with the <leader>c command
 autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 let g:go_highlight_functions = 1
@@ -216,11 +242,11 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 numb
 "
 " ultisnips configuration 24/07/2018
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 " ultisnips configuration - END
 "
 " Map jj to <ESC> key
