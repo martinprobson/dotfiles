@@ -76,6 +76,8 @@ Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
 " Install actual snippets 24/07/2018
 "Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+" Haskell vim support
+Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 "
 call plug#end()
 filetype plugin indent on	" Required
@@ -121,7 +123,7 @@ colorscheme zenburn
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
 else
-	set guifont=Source\ Code\ Pro\ 12
+	set guifont=Source\ Code\ Pro\ 14
 endif
 " Hide the toolbar in gvim (I never use it)
 if has("gui_running")
