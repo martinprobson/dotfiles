@@ -41,7 +41,12 @@ set directory=~/.vim/swaps
 set runtimepath+=~/.vim/
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent call system('mkdir -p ~/.vim/{autoload,bundle,cache,undo,backups,swaps}')
+  silent call system('mkdir -p ~/.vim/autoload')
+  silent call system('mkdir -p ~/.vim/bundle')
+  silent call system('mkdir -p ~/.vim/cache')
+  silent call system('mkdir -p ~/.vim/undo')
+  silent call system('mkdir -p ~/.vim/backups')
+  silent call system('mkdir -p ~/.vim/swaps')
   silent call system('curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   execute 'source  ~/.vim/autoload/plug.vim'
   augroup plugsetup
@@ -76,6 +81,8 @@ Plug 'vimwiki/vimwiki'
 " Install actual snippets 24/07/2018
 "Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+" Haskell vim support
+Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 "
 call plug#end()
 filetype plugin indent on	" Required
@@ -121,7 +128,7 @@ colorscheme zenburn
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
 else
-	set guifont=Source\ Code\ Pro\ 12
+	set guifont=Source\ Code\ Pro\ 14
 endif
 " Hide the toolbar in gvim (I never use it)
 if has("gui_running")
