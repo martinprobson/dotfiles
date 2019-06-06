@@ -56,7 +56,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/Zenburn'
 
 " features
-Plug 'autowitch/hive.vim'
+"Plug 'autowitch/hive.vim'
 Plug 'vim-scripts/indentpython.vim'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
@@ -70,7 +70,7 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
 Plug 'vimwiki/vimwiki'
 " Install vim-go 18/07/2018
-Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
+"Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
 " Install ultisnips 24/07/2018
 "Plug 'SirVer/ultisnips'
 " Install actual snippets 24/07/2018
