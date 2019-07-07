@@ -14,7 +14,7 @@
 " ░░░░░░░░░░
 "
 set nocompatible    " vim mode
-set hidden          " Do not unload hidden buffers
+"set hidden          " Do not unload hidden buffers
 "set confirm        " confirm unsaved changes 
 set hlsearch        " highlight all search matches
 set path+=**        " list of directories to be searched when looking for files
@@ -102,8 +102,8 @@ set statusline=
 set statusline+=%7*\[%n]                                  "buffernr
 set statusline+=%1*\ %<%F\                                "File+path
 set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+"set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+"set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
 set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
 set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
 set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
@@ -258,13 +258,3 @@ set belloff=all
 "let g:UltiSnipsEditSplit="vertical"
 " ultisnips configuration - END
 "
-"hi User0 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User1 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User2 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User3 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User4 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User5 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User6 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User7 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User8 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
-"hi User9 ctermbg=27 ctermfg=1 guibg=blue    guifg=white
