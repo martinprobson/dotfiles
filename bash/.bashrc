@@ -131,9 +131,10 @@ shopt -s histappend                      # append to history, don't overwrite it
 set -o vi
 export EDITOR=vi
 alias ll="ls -l"
-alias h="history"
 alias vi='vim'
 alias gits='git status'
+alias h="history "
+alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
