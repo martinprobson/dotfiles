@@ -23,6 +23,7 @@ set modeline
 set showmatch 	    " show matched brackets
 set showcmd 
 set autochdir
+set autowriteall
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 if v:version < 704
@@ -70,14 +71,14 @@ Plug 'vim-scripts/Zenburn'
 "Plug 'autowitch/hive.vim'
 "Plug 'vim-scripts/indentpython.vim'
 "Plug 'Valloric/YouCompleteMe'
-"Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 "Plug 'motus/pig.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'jlanzarotta/bufexplorer'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'kien/ctrlp.vim'
-"Plug 'https://github.com/suan/vim-instant-markdown.git'
+Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
 Plug 'vimwiki/vimwiki'
 " Install vim-go 18/07/2018
@@ -88,7 +89,7 @@ Plug 'vimwiki/vimwiki'
 "Plug 'honza/vim-snippets'
 "Plug 'ervandew/supertab'
 " Haskell vim support
-"Plug 'https://github.com/neovimhaskell/haskell-vim.git'
+Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 "
 call plug#end()
 filetype plugin indent on	" Required
