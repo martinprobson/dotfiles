@@ -14,14 +14,15 @@
 " ░░░░░░░░░░
 "
 set nocompatible    " vim mode
-"set hidden          " Do not unload hidden buffers
+set noshowmode      " Do not show mode on last line (airline does this on status line)
+set hidden          " Do not unload hidden buffers
 "set confirm        " confirm unsaved changes 
 set hlsearch        " highlight all search matches
 set path+=**        " list of directories to be searched when looking for files
 set wildmenu        " enhanced command line completion 
 set modeline 
 set showmatch 	    " show matched brackets
-set showcmd 
+"set showcmd 
 set autochdir
 set autowriteall
 " Vim absolute and relative line numbers
@@ -75,8 +76,8 @@ Plug 'derekwyatt/vim-scala'
 "Plug 'motus/pig.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'jlanzarotta/bufexplorer'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'kien/ctrlp.vim'
 Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
@@ -95,21 +96,7 @@ call plug#end()
 filetype plugin indent on	" Required
 filetype plugin on
 "
-" Martin 26/05/2017 - Add statusline showing full pathname
-" See
-" https://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
 set laststatus=2
-set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%2*\ %y\                                  "FileType
-"set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-"set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
 function! HighlightSearch()
   if &hls
     return 'H'
@@ -120,14 +107,10 @@ endfunction
 " Martin 26/05/2017 - End
 set t_Co=256
 syntax enable
-"colorscheme slate
-" Martin 20/02/2018 - use zenburn colour scheme
-"colorscheme molokai
-" Martin 28/02/2019 - Change some zenburn options
 let g:zenburn_alternate_Visual = 1
 let g:zenburn_old_Visual = 1
+set termguicolors
 colorscheme zenburn
-"set guifont=monaco\ 11
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
 else
@@ -137,8 +120,8 @@ endif
 if has("gui_running")
     set guioptions -=T
 endif
-" set airline theme
-"let g:airline_theme='zenburn'
+" set  airline theme
+let g:airline_theme='zenburn'
 " Enable folding and allow folding using the space bar
 set foldmethod=indent
 set foldlevel=99
@@ -206,6 +189,7 @@ set belloff=all
 "let g:airline#extensions#tabline#fnamemod = ':t'
 " Martin 25/06/2018 - Shortcuts to move to next/prev buffer
 "nmap <leader>l :bnext<CR>
+nmap <leader>l :ls<CR>
 "nmap <leader>h :bprevious<CR>
 "
 " GOLANG SUPPORT (vim-go) - START
