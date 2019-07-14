@@ -19,17 +19,13 @@ set hidden          " Do not unload hidden buffers
 set hlsearch        " highlight all search matches
 set path+=**        " list of directories to be searched when looking for files
 set wildmenu        " enhanced command line completion 
-set modeline 
+set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
 set autochdir
 set autowriteall
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
-if v:version < 704
-	set number relativenumber
-else
-	set number relativenumber
-endif
+set number relativenumber
 " Map jj to <ESC> key
 inoremap jj <ESC>
 
@@ -80,12 +76,11 @@ function! HighlightSearch()
     return ''
   endif
 endfunction
-" Martin 26/05/2017 - End
-"set t_Co=256
+set t_Co=256
 syntax enable
-let g:zenburn_alternate_Visual = 1
-let g:zenburn_old_Visual = 1
-set termguicolors
+if v:version > 740
+	set termguicolors
+endif
 set background=dark
 colorscheme gruvbox
 if has("win32")
@@ -130,10 +125,6 @@ set encoding=utf-8
 au BufNewFile,BufRead *.hql set filetype=hive expandtab
 " for .q files
 au BufNewFile,BufRead *.q set filetype=hive expandtab
-" Martin 08/01/2018 shortcut (CTRL-N) for NERDTree
-"map <silent> <C-n> :NERDTreeToggle<CR>
-"let NERDTreeQuitOnOpen = 1
-" for .hql files
 "
 " Instant markdown preview
 let g:instant_markdown_autostart = 0
