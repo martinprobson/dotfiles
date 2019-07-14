@@ -16,13 +16,11 @@
 set nocompatible    " vim mode
 set noshowmode      " Do not show mode on last line (airline does this on status line)
 set hidden          " Do not unload hidden buffers
-"set confirm        " confirm unsaved changes 
 set hlsearch        " highlight all search matches
 set path+=**        " list of directories to be searched when looking for files
 set wildmenu        " enhanced command line completion 
 set modeline 
 set showmatch 	    " show matched brackets
-"set showcmd 
 set autochdir
 set autowriteall
 " Vim absolute and relative line numbers
@@ -31,20 +29,12 @@ if v:version < 704
 	set number relativenumber
 else
 	set number relativenumber
-"	augroup numbertoggle
-"		autocmd!
-"		autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-"	augroup end
 endif
 " Map jj to <ESC> key
 inoremap jj <ESC>
 
 filetype off
 
-"set undodir=~/.vim/undo//
-"set backupdir=~/.vim/backups//
-"set directory=~/.vim/swaps
 "
 set runtimepath+=~/.vim/
 
@@ -66,29 +56,15 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " colors
-Plug 'vim-scripts/Zenburn'
+Plug 'https://github.com/morhetz/gruvbox'
 
 " features
-"Plug 'autowitch/hive.vim'
-"Plug 'vim-scripts/indentpython.vim'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-scala'
-"Plug 'motus/pig.vim'
-"Plug 'scrooloose/nerdtree'
-"Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'kien/ctrlp.vim'
 Plug 'https://github.com/suan/vim-instant-markdown.git'
 " Install vimwiki 23/05/2018
 Plug 'vimwiki/vimwiki'
-" Install vim-go 18/07/2018
-"Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoInstallBinaries' }
-" Install ultisnips 24/07/2018
-"Plug 'SirVer/ultisnips'
-" Install actual snippets 24/07/2018
-"Plug 'honza/vim-snippets'
-"Plug 'ervandew/supertab'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 "
@@ -105,12 +81,13 @@ function! HighlightSearch()
   endif
 endfunction
 " Martin 26/05/2017 - End
-set t_Co=256
+"set t_Co=256
 syntax enable
 let g:zenburn_alternate_Visual = 1
 let g:zenburn_old_Visual = 1
 set termguicolors
-colorscheme zenburn
+set background=dark
+colorscheme gruvbox
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
 else
@@ -121,7 +98,7 @@ if has("gui_running")
     set guioptions -=T
 endif
 " set  airline theme
-let g:airline_theme='zenburn'
+let g:airline_theme='gruvbox'
 " Enable folding and allow folding using the space bar
 set foldmethod=indent
 set foldlevel=99
@@ -158,16 +135,6 @@ au BufNewFile,BufRead *.q set filetype=hive expandtab
 "let NERDTreeQuitOnOpen = 1
 " for .hql files
 "
-" CTRL-P
-"let g:ctrlp_map = '<C-p>' 
-"let g:ctrlp_cmd = 'CtrlP'
-"nnoremap <leader>be :CtrlPBuffer<CR>
-"nnoremap <leader>e :CtrlPBuffer<CR>
-"let g:ctrlp_custom_ignore = {
-"\ 'dir': '\v[\/](\.git|\.hg|\.svn|target)$',
-"\ 'file': '\v\.(class|zip)$',
-"\ }
-"
 " Instant markdown preview
 let g:instant_markdown_autostart = 0
 map <leader>md :InstantMarkdownPreview
@@ -191,55 +158,4 @@ set belloff=all
 "nmap <leader>l :bnext<CR>
 nmap <leader>l :ls<CR>
 "nmap <leader>h :bprevious<CR>
-"
-" GOLANG SUPPORT (vim-go) - START
-"
-" golang: vim-go support 18/07/2018
-" Run GoRun with the <leader>r command
-"autocmd FileType go nmap <leader>r <Plug>(go-run)
-" Run GoTest with the <leader>t command
-"autocmd FileType go nmap <leader>t <Plug>(go-test)
-" Only use quickfix lists in go
-"let g:go_list_type = "quickfix"
-" autowrite when make is called (e.g. GoBuild)
-"set autowrite 
-"
-" Function calls :GoBuild or :GoTestCompile 
-" depending on type of go file.
-"function! s:build_go_files()
-"	let l:file = expand('%')
-"	if l:file =~# '^\f\+_test\.go$'
-"		call go#test#Test(0,1)
-"	elseif l:file =~# '^\f\+\.go$'
-"		call go#cmd#Build(0)
-"	endif
-"endfunction
-" Run GoBuild with the <leader>b command
-"autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-" map \d to start Go debug and \q to stop it.
-"autocmd FileType go nmap <leader>d :GoDebugStart<CR>
-"autocmd FileType go nmap <leader>q :GoDebugStop<CR>
-" toggle between source code and test source code
-"autocmd FileType go nmap <leader>a :GoAlternate<CR>
-" Run GoCoverageToggle with the <leader>c command
-"autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-"let g:go_highlight_functions = 1
-"let g:go_highlight_function_calls = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_types = 1
-"
-" Use 'goimports' instead of 'gofmt' so that missing imports are automatically
-" added.
-"let g:go_fmt_command = "goimports"
-"autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 number
-" GOLANG SUPPORT (vim-go) - END
-"
-" ultisnips configuration 24/07/2018
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-" ultisnips configuration - END
 "
