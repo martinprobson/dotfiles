@@ -76,12 +76,16 @@ function! HighlightSearch()
     return ''
   endif
 endfunction
-set t_Co=256
+"set t_Co=256
 syntax enable
 if v:version > 740
 	set termguicolors
 endif
 set background=dark
+" set  airline theme
+"let g:airline_theme='base16'
+let g:gruvbox_undercurl=1
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
@@ -92,8 +96,6 @@ endif
 if has("gui_running")
     set guioptions -=T
 endif
-" set  airline theme
-let g:airline_theme='gruvbox'
 " Enable folding and allow folding using the space bar
 set foldmethod=indent
 set foldlevel=99
