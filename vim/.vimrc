@@ -63,7 +63,8 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
-"
+" Install vim go 23/07/2019
+Plug 'https://github.com/fatih/vim-go.git', { 'do':':GoInstallBinaries' }
 call plug#end()
 filetype plugin indent on	" Required
 filetype plugin on
@@ -152,3 +153,45 @@ set belloff=all
 nmap <leader>l :ls<CR>
 "nmap <leader>h :bprevious<CR>
 "
+"
+" GOLANG SUPPORT (vim-go) - START
+"
+" golang: vim-go support 18/07/2018
+" Run GoRun with the <leader>r command
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+" Run GoTest with the <leader>t command
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+" Only use quickfix lists in go
+let g:go_list_type = "quickfix"
+" autowrite when make is called (e.g. GoBuild)
+set autowrite 
+"
+" Function calls :GoBuild or :GoTestCompile 
+" depending on type of go file.
+function! s:build_go_files()
+	let l:file = expand('%')
+	if l:file =~# '^\f\+_test\.go$'
+		call go#test#Test(0,1)
+	elseif l:file =~# '^\f\+\.go$'
+		call go#cmd#Build(0)
+	endif
+endfunction
+" Run GoBuild with the <leader>b command
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+" map \d to start Go debug and \q to stop it.
+autocmd FileType go nmap <leader>d :GoDebugStart<CR>
+autocmd FileType go nmap <leader>q :GoDebugStop<CR>
+" toggle between source code and test source code
+autocmd FileType go nmap <leader>a :GoAlternate<CR>
+" Run GoCoverageToggle with the <leader>c command
+autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+"
+" Use 'goimports' instead of 'gofmt' so that missing imports are automatically
+" added.
+let g:go_fmt_command = "goimports"
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 number
+" GOLANG SUPPORT (vim-go) - END
