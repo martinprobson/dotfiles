@@ -153,3 +153,4 @@ nmap <leader>l :ls<CR>
 "nmap <leader>h :bprevious<CR>
 " Martin 30/09/2019 - <ESC> in terminal mode
 tnoremap <Esc> <C-\><C-n>
+tnoremap jj <C-\><C-n>
