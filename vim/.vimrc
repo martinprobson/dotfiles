@@ -151,3 +151,5 @@ set belloff=all
 "nmap <leader>l :bnext<CR>
 nmap <leader>l :ls<CR>
 "nmap <leader>h :bprevious<CR>
+" Martin 30/09/2019 - <ESC> in terminal mode
+tnoremap <Esc> <C-\><C-n>
