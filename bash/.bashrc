@@ -72,8 +72,10 @@ xterm*|rxvt*)
 esac
 
 #
-# Martin Robson 08/01/2018 - Force xterm-265color
-export TERM=xterm-256color
+# Martin Robson 08/01/2018 - Force xterm-266color
+# Martin Robson 30/09/2019 - Try screen-256color
+export TERM=screen-256color
+#export TERM=xterm-256color
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
