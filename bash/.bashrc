@@ -132,6 +132,9 @@ set -o vi
 export EDITOR=vi
 alias ll="ls -l"
 alias vi='vim'
+# Use neovim 
+alias vi='nvim'
+alias vim='nvim'
 alias gits='git status'
 alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
