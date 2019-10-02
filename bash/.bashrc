@@ -142,7 +142,7 @@ alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
 GIT_PROMPT_ONLY_IN_REPO=0
-[ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
+[ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 
 
