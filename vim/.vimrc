@@ -63,7 +63,6 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
-Plug 'christoomey/vim-tmux-navigator'
 "
 call plug#end()
 filetype plugin indent on	" Required
