@@ -5,3 +5,4 @@ set number relativenumber
 set showmode
 nmap <leader>l gt<CR>
 nmap <leader>h gT<CR>
+set ideajoin
