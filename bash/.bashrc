@@ -146,3 +146,14 @@ GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Make fzf use ripgrep by default
+export FZF_DEFAULT_COMMAND='rg --files '
+export FZF_TMUX=1
+# find in file command
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  # Try bat, highlight, coderay, rougify in turn, then fall back to cat
+  rg --files-with-matches --no-messages "$1" | fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500'
+}

@@ -63,8 +63,17 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "
 call plug#end()
+" fzf shortcuts
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>g :Rg<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>l :Lines<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+"
 filetype plugin indent on	" Required
 filetype plugin on
 "
@@ -147,10 +156,6 @@ set belloff=all
 " Show just the filename
 " Martin 25/06/2018 - Add airline tabline extension 
 "let g:airline#extensions#tabline#fnamemod = ':t'
-" Martin 25/06/2018 - Shortcuts to move to next/prev buffer
-"nmap <leader>l :bnext<CR>
-nmap <leader>l :ls<CR>
-"nmap <leader>h :bprevious<CR>
 " Martin 30/09/2019 - <ESC> in terminal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap jj <C-\><C-n>
