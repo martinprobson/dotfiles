@@ -157,7 +157,7 @@ set belloff=all
 " Martin 25/06/2018 - Add airline tabline extension 
 "let g:airline#extensions#tabline#fnamemod = ':t'
 " Martin 30/09/2019 - <ESC> in terminal mode
-if v:version > 703
+if v:version > 800
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap jj <C-\><C-n>
 endif
