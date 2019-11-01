@@ -13,16 +13,16 @@
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
-set nocompatible    " vim mode
+""set nocompatible    " vim mode
 set noshowmode      " Do not show mode on last line (airline does this on status line)
-set hidden          " Do not unload hidden buffers
+""set hidden          " Do not unload hidden buffers
 set hlsearch        " highlight all search matches
-set path+=**        " list of directories to be searched when looking for files
+""set path+=**        " list of directories to be searched when looking for files
 set wildmenu        " enhanced command line completion 
 set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
-set autochdir
-set autowriteall
+""set autochdir
+""set autowriteall
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 set number relativenumber
@@ -34,13 +34,16 @@ filetype off
 "
 set runtimepath+=~/.vim/
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install plug.vim 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent call system('mkdir -p ~/.vim/autoload')
   silent call system('mkdir -p ~/.vim/bundle')
-  silent call system('mkdir -p ~/.vim/cache')
-  silent call system('mkdir -p ~/.vim/undo')
-  silent call system('mkdir -p ~/.vim/backups')
-  silent call system('mkdir -p ~/.vim/swaps')
+""  silent call system('mkdir -p ~/.vim/cache')
+""  silent call system('mkdir -p ~/.vim/undo')
+""  silent call system('mkdir -p ~/.vim/backups')
+""  silent call system('mkdir -p ~/.vim/swaps')
   silent call system('curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   execute 'source  ~/.vim/autoload/plug.vim'
   augroup plugsetup
@@ -49,6 +52,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   augroup end
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
 " colors
@@ -157,7 +163,5 @@ set belloff=all
 " Martin 25/06/2018 - Add airline tabline extension 
 "let g:airline#extensions#tabline#fnamemod = ':t'
 " Martin 30/09/2019 - <ESC> in terminal mode
-if v:version > 800
-	tnoremap <Esc> <C-\><C-n>
-	tnoremap jj <C-\><C-n>
-endif
+tnoremap <Esc> <C-\><C-n>
+tnoremap jj <C-\><C-n>
