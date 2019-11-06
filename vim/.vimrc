@@ -18,6 +18,7 @@ set hlsearch        " highlight all search matches
 set wildmenu        " enhanced command line completion 
 set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
+set autochdir
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 set number relativenumber
@@ -60,6 +61,8 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
+" golang support
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 if !has("win32")
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
@@ -115,8 +118,10 @@ set foldlevel=99
 nnoremap <space> za	
 " Show docstrings when folded
 let g:SimpylFold_docstring_preview=1
+" Show tabs as four spaces for golang *.go code
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 " Indents for python
-au BufNewFile,BufRead *.py
+autocmd BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -125,20 +130,20 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.js,*.html,*.css
+autocmd BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
 
 "define BadWhitespace before using in a match
 highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+autocmd BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
 " Martin 26/09/2017 Add syntax highlight for hive hql files
 " for .hql files
-au BufNewFile,BufRead *.hql set filetype=hive expandtab
+autocmd BufNewFile,BufRead *.hql set filetype=hive expandtab
 " for .q files
-au BufNewFile,BufRead *.q set filetype=hive expandtab
+autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
 "
 " Instant markdown preview
 let g:instant_markdown_autostart = 0
