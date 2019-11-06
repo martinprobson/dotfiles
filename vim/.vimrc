@@ -13,16 +13,11 @@
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
-""set nocompatible    " vim mode
 set noshowmode      " Do not show mode on last line (airline does this on status line)
-""set hidden          " Do not unload hidden buffers
 set hlsearch        " highlight all search matches
-""set path+=**        " list of directories to be searched when looking for files
 set wildmenu        " enhanced command line completion 
 set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
-""set autochdir
-""set autowriteall
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 set number relativenumber
@@ -40,10 +35,6 @@ set runtimepath+=~/.vim/
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent call system('mkdir -p ~/.vim/autoload')
   silent call system('mkdir -p ~/.vim/bundle')
-""  silent call system('mkdir -p ~/.vim/cache')
-""  silent call system('mkdir -p ~/.vim/undo')
-""  silent call system('mkdir -p ~/.vim/backups')
-""  silent call system('mkdir -p ~/.vim/swaps')
   silent call system('curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   execute 'source  ~/.vim/autoload/plug.vim'
   augroup plugsetup
@@ -69,16 +60,22 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+if !has("win32")
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
+endif
 "
 call plug#end()
 " fzf shortcuts
-nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>g :Rg<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>l :Lines<CR>
-nnoremap <silent> <leader>ft :Filetypes<CR>
+if has("win32")
+	nnoremap <silent> <leader>b :ls<CR>
+else
+	nnoremap <silent> <leader>f :Files<CR>
+	nnoremap <silent> <leader>g :Rg<CR>
+	nnoremap <silent> <leader>b :Buffers<CR>
+	nnoremap <silent> <leader>l :Lines<CR>
+	nnoremap <silent> <leader>ft :Filetypes<CR>
+endif
 "
 filetype plugin indent on	" Required
 filetype plugin on
