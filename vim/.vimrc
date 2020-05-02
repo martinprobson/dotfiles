@@ -19,6 +19,7 @@ set wildmenu        " enhanced command line completion
 set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
 set autochdir
+set hidden
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 set number relativenumber
