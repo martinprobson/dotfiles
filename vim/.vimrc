@@ -19,6 +19,7 @@ set wildmenu        " enhanced command line completion
 set modeline        " Allow use of modelines
 set showmatch 	    " show matched brackets
 set autochdir
+set hidden
 " Vim absolute and relative line numbers
 " Use Hybrid line numbers and switch between hybrid and absolute automatically
 set number relativenumber
@@ -159,11 +160,11 @@ let g:vimwiki_menu=''
 " Turn off sounds
 set belloff=all
 " Enable the list of buffers
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 " Martin 25/06/2018 - Add airline tabline extension 
-"let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#fnamemod = ':t'
 " Martin 30/09/2019 - <ESC> in terminal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap jj <C-\><C-n>
