@@ -101,7 +101,7 @@ set background=dark
 " set  airline theme
 "let g:airline_theme='base16'
 let g:gruvbox_undercurl=1
-let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
@@ -160,7 +160,7 @@ let g:vimwiki_menu=''
 " Turn off sounds
 set belloff=all
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 " Martin 25/06/2018 - Add airline tabline extension 
