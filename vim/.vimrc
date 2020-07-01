@@ -63,7 +63,7 @@ Plug 'vimwiki/vimwiki'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 " golang support
-Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 if !has("win32")
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
@@ -101,7 +101,7 @@ set background=dark
 " set  airline theme
 "let g:airline_theme='base16'
 let g:gruvbox_undercurl=1
-"let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
