@@ -1,3 +1,4 @@
+" vim:fdm=marker
 "                                                
 "                                                
 "██╗███╗   ██╗██╗████████╗██╗   ██╗██╗███╗   ███╗
@@ -9,6 +10,8 @@
 "
 " https://github.com/martinprobson/dotfiles/tree/master/nvim/.config/nvim
 "                                                
+"
+" {{{GENERAL
 "
 " Not needed for neovim
 set nocompatible 
@@ -28,6 +31,12 @@ set hlsearch				    " highlight all search matches
 set wildmenu				    " enhanced command line completion 
 set path+=**
 set showmatch				    " show matched brackets
+set modeline
+" List buffers with \b
+nnoremap <silent> <leader>b :ls<CR>
+autocmd BufNewFile,BufRead *.scala set path+=**
+" }}}
+" {{{netrw
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " netrw
@@ -41,6 +50,8 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 " Open netrw in vsplit with \f
 nnoremap <silent> <leader>f :Vex.<CR>
+" }}}
+" {{{plugins
 "
 " Plugins
 "
@@ -48,6 +59,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " colour scheme
 Plug 'https://github.com/morhetz/gruvbox'
 " Status line 
+"
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Scala support (see help scala)
@@ -59,6 +71,8 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 " vimwiki 
 Plug 'vimwiki/vimwiki'
 call plug#end()
+" }}}
+" {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOUR SCHEME/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,12 +82,12 @@ let g:gruvbox_contrast_dark='medium'
 let g:airline_theme='zenburn'
 let g:airline_powerline_fonts = 1
 colorscheme gruvbox
+" }}}
+" {{{VIMWIKI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIMWIKI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For vimwiki to use markdown syntax
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-" List buffers with \b
-nnoremap <silent> <leader>b :ls<CR>
-autocmd BufNewFile,BufRead *.scala set path+=**
+" }}}
