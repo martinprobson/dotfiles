@@ -32,6 +32,7 @@ set wildmenu				    " enhanced command line completion
 set path+=**
 set showmatch				    " show matched brackets
 set modeline
+set ignorecase smartcase
 " List buffers with \b
 nnoremap <silent> <leader>b :ls<CR>
 autocmd BufNewFile,BufRead *.scala set path+=**
