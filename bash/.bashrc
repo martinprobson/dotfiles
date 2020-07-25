@@ -74,7 +74,7 @@ esac
 #
 # Martin Robson 08/01/2018 - Force xterm-266color
 # Martin Robson 30/09/2019 - Try screen-256color
-export TERM=screen-256color
+export TERM=tmux-256color
 #export TERM=xterm-256color
 
 # enable color support of ls and also add handy aliases
@@ -135,8 +135,8 @@ export EDITOR=vi
 alias ll="ls -l"
 alias vi='vim'
 # Use neovim 
-alias vi='nvim'
-alias vim='nvim'
+#alias vi='nvim'
+#alias vim='nvim'
 alias gits='git status'
 alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "

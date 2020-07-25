@@ -94,14 +94,14 @@ function! HighlightSearch()
 endfunction
 set t_Co=256
 syntax enable
-if v:version > 740
+"if v:version > 740
 	set termguicolors
-endif
+"endif
 set background=dark
 " set  airline theme
 "let g:airline_theme='base16'
 let g:gruvbox_undercurl=1
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 if has("win32")
 	set guifont=Source_Code_Pro:h12:cANSI:qDRAFT
@@ -161,6 +161,8 @@ let g:vimwiki_menu=''
 set belloff=all
 " Enable the list of buffers
 "let g:airline#extensions#tabline#enabled = 1
+" Do not show banner in netrw (toggle with I)
+let g:netrw_banner=0
 
 " Show just the filename
 " Martin 25/06/2018 - Add airline tabline extension 
