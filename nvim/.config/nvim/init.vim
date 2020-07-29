@@ -33,8 +33,17 @@ set path+=**
 set showmatch				    " show matched brackets
 set modeline
 set ignorecase smartcase
+if (has("termguicolors"))
+	set termguicolors
+endif
 " List buffers with \b
 nnoremap <silent> <leader>b :ls<CR>:b<Space>
+<<<<<<< HEAD
+=======
+nnoremap <C-e> :ls<CR>:b<Space>
+" Buffer list popup with \n
+nnoremap <silent> <leader>n :b <Tab>
+>>>>>>> 7f0173042c32f70c1c455f0fd4796a38bc426c92
 autocmd BufNewFile,BufRead *.scala set path+=**
 " }}}
 " {{{netrw
@@ -48,7 +57,6 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 0
 let g:netrw_browse_split = 0
 let g:netrw_altv = 1
-"let g:netrw_winsize = 25
 nnoremap <silent> <leader>f :Explore.<CR>
 " }}}
 " {{{plugins
@@ -64,6 +72,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Scala support (see help scala)
 Plug 'derekwyatt/vim-scala'
+Plug 'GEverding/vim-hocon'
 " Haskell vim support
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 " Markdown support
