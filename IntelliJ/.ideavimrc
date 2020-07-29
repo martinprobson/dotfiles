@@ -6,3 +6,7 @@ set showmode
 nmap <leader>l gt<CR>
 nmap <leader>h gT<CR>
 set ideajoin
+set hlsearch				    " highlight all search matches
+set showmatch				    " show matched brackets
+set ignorecase smartcase
+"

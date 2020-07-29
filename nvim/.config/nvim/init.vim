@@ -38,12 +38,7 @@ if (has("termguicolors"))
 endif
 " List buffers with \b
 nnoremap <silent> <leader>b :ls<CR>:b<Space>
-<<<<<<< HEAD
-=======
 nnoremap <C-e> :ls<CR>:b<Space>
-" Buffer list popup with \n
-nnoremap <silent> <leader>n :b <Tab>
->>>>>>> 7f0173042c32f70c1c455f0fd4796a38bc426c92
 autocmd BufNewFile,BufRead *.scala set path+=**
 " }}}
 " {{{netrw
