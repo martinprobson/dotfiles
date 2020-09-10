@@ -13,8 +13,6 @@
 "
 " {{{GENERAL
 "
-" Not needed for neovim
-set nocompatible 
 " Syntax highlighting
 syntax enable
 " Turn off sounds
@@ -25,7 +23,7 @@ set hidden
 inoremap jj <ESC> 			" Map jj to Esc
 tnoremap <Esc> <C-\><C-n> 		" Map Esc/jj in terminal mode
 tnoremap jj <C-\><C-n>
-set number relativenumber      	        	" Vim absolute and relative line numbers
+set number relativenumber      	            " Vim absolute and relative line numbers
 set noshowmode				    " Do not show mode on last line (airline does this on status line)
 set hlsearch				    " highlight all search matches
 set wildmenu				    " enhanced command line completion 
@@ -65,15 +63,19 @@ Plug 'https://github.com/morhetz/gruvbox'
 "
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Scala support (see help scala)
-Plug 'derekwyatt/vim-scala'
 Plug 'GEverding/vim-hocon'
-" Haskell vim support
-Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 " Markdown support
 Plug 'https://github.com/suan/vim-instant-markdown.git'
 " vimwiki 
 Plug 'vimwiki/vimwiki'
+Plug 'sheerun/vim-polyglot'
+"
+" Following plugins disabled a installed vim-ployglot instead.
+"
+" Scala support (see help scala)
+"Plug 'derekwyatt/vim-scala'
+" Haskell vim support
+"Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
 " }}}
 " {{{COLOURS/STATUS LINE
