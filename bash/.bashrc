@@ -10,7 +10,7 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-export TERM=xterm-256color
+export TERM=tmux-256color
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -75,7 +75,8 @@ esac
 #
 # Martin Robson 08/01/2018 - Force xterm-266color
 # Martin Robson 30/09/2019 - Try screen-256color
-export TERM=xterm-256color
+export TERM=tmux-256color
+#export TERM=xterm-256color
 #export TERM=xterm-256color
 
 # enable color support of ls and also add handy aliases

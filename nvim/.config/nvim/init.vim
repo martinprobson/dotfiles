@@ -69,6 +69,7 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 " vimwiki 
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/edkolev/tmuxline.vim'
 "
 " Following plugins disabled a installed vim-ployglot instead.
 "
@@ -85,7 +86,7 @@ call plug#end()
 set background=dark
 let g:gruvbox_undercurl=1
 let g:gruvbox_contrast_dark='medium'
-let g:airline_theme='zenburn'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 colorscheme gruvbox
 " }}}
