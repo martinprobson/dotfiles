@@ -50,7 +50,8 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 0
 let g:netrw_browse_split = 0
 let g:netrw_altv = 1
-nnoremap <silent> <leader>f :Explore.<CR>
+" Removed to toggle NerdTree instead
+"nnoremap <silent> <leader>f :Explore.<CR>
 " }}}
 " {{{plugins
 "
@@ -70,6 +71,8 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/edkolev/tmuxline.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdtree'
 "
 " Following plugins disabled a installed vim-ployglot instead.
 "
@@ -78,6 +81,9 @@ Plug 'https://github.com/edkolev/tmuxline.vim'
 " Haskell vim support
 "Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
+" }}}
+" {{{NerdTree
+nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 " }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
