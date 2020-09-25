@@ -73,6 +73,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/edkolev/tmuxline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
 "
 " Following plugins disabled a installed vim-ployglot instead.
 "
@@ -84,6 +85,10 @@ call plug#end()
 " }}}
 " {{{NerdTree
 nnoremap <silent> <leader>f :NERDTreeToggle<CR>
+" }}}
+" {{{CTRL-P
+let g:ctrlp_map = '<c-e>'
+let g:ctrlp_cmd = 'CtrlPMixed'
 " }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
