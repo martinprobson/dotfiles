@@ -35,7 +35,7 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 " List buffers with \b
-nnoremap <silent> <leader>b :ls<CR>:b<Space>
+"nnoremap <silent> <leader>b :ls<CR>:b<Space>
 nnoremap <C-e> :ls<CR>:b<Space>
 autocmd BufNewFile,BufRead *.scala set path+=**
 " }}}
@@ -89,6 +89,7 @@ nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 " {{{CTRL-P
 let g:ctrlp_map = '<c-e>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 " }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
