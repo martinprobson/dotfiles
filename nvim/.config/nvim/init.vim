@@ -74,6 +74,8 @@ Plug 'https://github.com/edkolev/tmuxline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+" Uncomment this line for golang support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
 " Following plugins disabled a installed vim-ployglot instead.
 "
@@ -82,6 +84,26 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Haskell vim support
 "Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
+" }}}
+" {{{vim-go
+" Documnention (K command) opened in popup window
+let g:go_doc_popup_window = 1
+let g:go_list_type = "quickfix"
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_fmt_command = "goimports"
+autocmd FileType go nmap <leader>g  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+" quickfix window navigation - this is not specific to go....
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+"
+" Note `if` and `af` are defined in normal mode to be inner function and outer
+" function so you can do `cif` or `daf` for example
 " }}}
 " {{{NerdTree
 nnoremap <silent> <leader>f :NERDTreeToggle<CR>
