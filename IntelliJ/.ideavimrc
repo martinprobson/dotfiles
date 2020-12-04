@@ -1,4 +1,5 @@
 
+
 " Map jj to <ESC> key
 inoremap jj <ESC>
 set number relativenumber

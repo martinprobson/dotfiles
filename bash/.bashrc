@@ -143,6 +143,9 @@ alias gits='git status'
 alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
+# Stack (Haskell)
+alias ghci='stack --silent ghci'
+
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
@@ -175,3 +178,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/martinr/.sdkman"
+[[ -s "/home/martinr/.sdkman/bin/sdkman-init.sh" ]] && source "/home/martinr/.sdkman/bin/sdkman-init.sh"

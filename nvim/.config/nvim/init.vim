@@ -74,6 +74,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'christoomey/vim-tmux-navigator'
 " Uncomment this line for golang support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
