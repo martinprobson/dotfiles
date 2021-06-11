@@ -69,6 +69,11 @@ Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 " Uncomment this line for golang support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 "
 " Following plugins disabled a installed vim-ployglot instead.
 "
@@ -77,6 +82,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Haskell vim support
 "Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
+" }}}
+" {{{vim-signify
+" Default updatetime of 4000ms is not good for async update
+set updatetime=100
+nnoremap <silent> <leader>st :SignifyToggleHighlight<CR>
+nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " }}}
 " {{{vim-go
 " Documnention (K command) opened in popup window

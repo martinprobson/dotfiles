@@ -75,6 +75,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mhinz/vim-signify'
 " Uncomment this line for golang support
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
@@ -85,6 +86,12 @@ Plug 'christoomey/vim-tmux-navigator'
 " Haskell vim support
 "Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
+" }}}
+" {{{vim-signify
+" Default updatetime of 4000ms is not good for async update
+set updatetime=100
+nnoremap <silent> <leader>st :SignifyToggleHighlight<CR>
+nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " }}}
 " {{{vim-go
 " Documnention (K command) opened in popup window
