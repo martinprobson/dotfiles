@@ -76,6 +76,8 @@ Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
+Plug 'junegunn/fzf.vim'
 " Uncomment this line for golang support
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
@@ -86,6 +88,10 @@ Plug 'mhinz/vim-signify'
 " Haskell vim support
 "Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 call plug#end()
+" }}}
+" {{{fzf.vim
+nnoremap <C-P> :Files<CR>
+nnoremap <silent><leader>b :Buffers<CR>
 " }}}
 " {{{vim-signify
 " Default updatetime of 4000ms is not good for async update
@@ -119,7 +125,8 @@ nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 " {{{CTRL-P
 let g:ctrlp_map = '<c-e>'
 let g:ctrlp_cmd = 'CtrlPMixed'
-nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+" Comment out - use fzf instead for buffers
+"nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 " }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
