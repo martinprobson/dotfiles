@@ -1,0 +1,36 @@
+{
+    "editor.fontFamily": "'Source Code Pro'",
+    "editor.fontSize": 17,
+    "window.zoomLevel": 1,
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.showmodename": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#955c26",
+        "statusBar.noFolderBackground": "#955c26",
+        "statusBar.debuggingBackground": "#955c26"
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+
+}
+
+
+
+
