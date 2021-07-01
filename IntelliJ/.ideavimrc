@@ -1,7 +1,14 @@
 
+
 " Map jj to <ESC> key
 inoremap jj <ESC>
 set number relativenumber
 set showmode
 nmap <leader>l gt<CR>
 nmap <leader>h gT<CR>
+set ideajoin
+set hlsearch				    " highlight all search matches
+set incsearch
+set showmatch				    " show matched brackets
+set ignorecase smartcase
+"

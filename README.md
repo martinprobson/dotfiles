@@ -1,6 +1,7 @@
 # dotfiles
 
 -  vim            > Vim config and plugins.
+-  neovim         > Neovim config and plugins (points to vim config)
 -  bash           > bashrc/dircolors
 -  fonts          > Nice monospaced fonts for terminal and vim.
 -  terminator     > [terminator](https://gnometerminator.blogspot.co.uk/p/introduction.html) configuration.

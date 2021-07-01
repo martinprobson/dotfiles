@@ -10,6 +10,7 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
+#export TERM=tmux-256color
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -72,8 +73,11 @@ xterm*|rxvt*)
 esac
 
 #
-# Martin Robson 08/01/2018 - Force xterm-265color
-export TERM=xterm-256color
+# Martin Robson 08/01/2018 - Force xterm-266color
+# Martin Robson 30/09/2019 - Try screen-256color
+#export TERM=tmux-256color
+#export TERM=xterm-256color
+#export TERM=xterm-256color
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -131,11 +135,22 @@ shopt -s histappend                      # append to history, don't overwrite it
 set -o vi
 export EDITOR=vi
 alias ll="ls -l"
-alias h="history"
-alias vi='vim'
+alias vi='nvim'
+# Use neovim 
+alias vi='nvim'
+alias vim='nvim'
 alias gits='git status'
+alias h="history "
+alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
+
+# Stack (Haskell)
+alias ghci='stack --silent ghci'
 
 GIT_PROMPT_ONLY_IN_REPO=0
-[ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
+[ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
+
+
+
+
 
