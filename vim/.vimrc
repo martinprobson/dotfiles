@@ -126,7 +126,6 @@ let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 " }}}
 " {{{WhichKey
 nnoremap <silent> <leader>      :<c-u>WhichKey '\'<CR>
-let g:which_key_map.m = 'which_key_ignore'
 " }}}
 " {{{Markdown Preview
 " Instant markdown preview
