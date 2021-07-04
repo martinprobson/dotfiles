@@ -77,6 +77,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-which-key'
+"
 "
 " Enable Language server/metals if we have NVIM 0.5
 "
@@ -103,10 +105,6 @@ nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " {{{NerdTree
 nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 " }}}
-" {{{CTRL-P
-"let g:ctrlp_map = '<c-e>'
-"let g:ctrlp_cmd = 'CtrlPBuffer'
-" }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOUR SCHEME/STATUS LINE
@@ -125,6 +123,10 @@ colorscheme gruvbox
 " For vimwiki to use markdown syntax
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown' }
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" }}}
+" {{{WhichKey
+nnoremap <silent> <leader>      :<c-u>WhichKey '\'<CR>
+let g:which_key_map.m = 'which_key_ignore'
 " }}}
 " {{{Markdown Preview
 " Instant markdown preview
