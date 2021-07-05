@@ -91,10 +91,11 @@ endif
 call plug#end()
 " }}}
 " {{{fzf.vim
-nnoremap <silent><leader>e :FZF<CR>
-nnoremap <silent><leader>b :Buffers<CR>
-nnoremap <silent><leader>g :GFiles<CR>
-nnoremap <silent><leader>h :History<CR>
+nnoremap <silent><leader>e :<c-u>FZF<CR>
+nnoremap <silent><leader>eh :<c-u>FZF ~<CR>
+nnoremap <silent><leader>b :<c-u>Buffers<CR>
+nnoremap <silent><leader>g :<c-u>GFiles<CR>
+nnoremap <silent><leader>h :<c-u>History<CR>
 " }}}
 " {{{vim-signify
 " Default updatetime of 4000ms is not good for async update
