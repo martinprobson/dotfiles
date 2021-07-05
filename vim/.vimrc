@@ -126,6 +126,17 @@ let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 " }}}
 " {{{WhichKey
 nnoremap <silent> <leader>      :<c-u>WhichKey '\'<CR>
+let g:which_key_map  = {}
+" Signify
+let g:which_key_map['s'] = { 'name' : 'signify' }
+let g:which_key_map.s.t = ['SignifyToggleHighlight', 'SignifyToggleHighlight' ]
+let g:which_key_map.s.d = ['SignifyHunkDiff', 'SignifyHunkDiff' ]
+" vimwiki
+let g:which_key_map['w'] = { 'name' : 'VimWiki' }
+" Markdown preview
+let g:which_key_map['m'] = { 'name' : 'Markdown preview' }
+let g:which_key_map.s.t = ['Markdown Preview', 'Markdown Preview' ]
+call which_key#register('\', "g:which_key_map")
 " }}}
 " {{{Markdown Preview
 " Instant markdown preview
