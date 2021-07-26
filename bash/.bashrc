@@ -11,6 +11,20 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 #export TERM=tmux-256color
+#
+#
+# Add to path if not already added
+#
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+pathaddBefore() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${1}:${PATH:+"$PATH"}"
+    fi
+}
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -143,8 +157,7 @@ alias gits='git status'
 alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
-# Stack (Haskell)
-alias ghci='stack --silent ghci'
+
 
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
