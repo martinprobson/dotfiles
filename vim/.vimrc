@@ -78,6 +78,8 @@ Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-fugitive'
 "
 "
 " Enable Language server/metals if we have NVIM 0.5
