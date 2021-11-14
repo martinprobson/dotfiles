@@ -31,6 +31,7 @@ set path+=**
 set showmatch				        " show matched brackets
 set modeline
 set ignorecase smartcase
+"set spell spelllang=en_gb
 if (has("termguicolors"))
 	set termguicolors
 endif
@@ -59,6 +60,7 @@ else
 endif
 " colour scheme
 Plug 'https://github.com/morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 " Status line 
 "
 Plug 'vim-airline/vim-airline'
@@ -87,8 +89,9 @@ Plug 'tpope/vim-fugitive'
 if has('nvim-0.5')
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'scalameta/nvim-metals'
-	Plug 'haorenW1025/completion-nvim'
-	Plug 'haorenW1025/diagnostic-nvim'
+	Plug 'hrsh7th/nvim-compe'
+	Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
+	Plug 'nvim-lua/plenary.nvim'
 endif
 call plug#end()
 " }}}
@@ -115,9 +118,10 @@ nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 set background=dark
 let g:gruvbox_undercurl=1
 let g:gruvbox_contrast_dark='medium'
-let g:airline_theme='gruvbox'
+"let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
-colorscheme gruvbox
+colorscheme onedark
 " }}}
 " {{{VIMWIKI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,14 +161,21 @@ au!
 au FileType scala,sbt lua require('metals').initialize_or_attach({})
 augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+" Does not work
+"nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+" Does not work
+" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 100)
 "
 "
 
 :lua << EOF
-  metals_config = require'metals'.bare_config
+  metals_config = require'metals'.bare_config()
   metals_config.settings = {
      showImplicitArguments = true,
      excludedPackages = {
@@ -185,7 +196,79 @@ autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
     }
   )
 EOF
+:lua << EOF
+vim.o.completeopt = "menuone,noselect"
 
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = false;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = false;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = false;
+    treesitter = true;
+  };
+}
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
 let g:diagnostic_enable_virtual_text = 0
 nnoremap <silent> [c          :NextDiagnostic<CR>
 nnoremap <silent> ]c          :PrevDiagnostic<CR>
@@ -196,5 +279,33 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 " Set maxmimum number of signs to show in signcolumn
 set signcolumn=auto:5
+endif
+" }}}
+" {{{Treesitter config
+"
+" Treesitter config
+"
+if has('nvim-0.5')
+:lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
+  ensure_installed = {
+    "scala",
+		"java",
+		"vim",
+		"lua",
+		"json",
+		"dockerfile",
+		"bash"
+  },
+}
+EOF
 endif
 " }}}
