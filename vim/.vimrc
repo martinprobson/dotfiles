@@ -159,6 +159,7 @@ if has('nvim-0.5')
 augroup lsp
 au!
 au FileType scala,sbt lua require('metals').initialize_or_attach({})
+"au FileType haskell require'lspconfig'.hls.setup{}
 augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " Does not work
@@ -173,6 +174,24 @@ autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 100)
 "
 "
+" Haskell Language Server setup
+lua << EOF
+require'lspconfig'.hls.setup{}
+EOF
+"
+" Do not show diagnostics, just use underlines and use CTRL-P/CTRL-N to show
+" the virtual text.
+"
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, { 
+		underline = true,
+		virtual_text = false,
+		signs = true,
+		update_in_insert = true, 
+		}
+	)
+EOF
 
 :lua << EOF
   metals_config = require'metals'.bare_config()
@@ -188,13 +207,6 @@ autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 100)
     require'completion'.on_attach();
   end
 
-  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = {
-        prefix = '',
-      }
-    }
-  )
 EOF
 :lua << EOF
 vim.o.completeopt = "menuone,noselect"
@@ -303,6 +315,7 @@ require'nvim-treesitter.configs'.setup {
 		"lua",
 		"json",
 		"dockerfile",
+		"haskell",
 		"bash"
   },
 }
