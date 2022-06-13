@@ -8,6 +8,8 @@
 "██║██║ ╚████║██║   ██║██╗ ╚████╔╝ ██║██║ ╚═╝ ██║
 "╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
 "
+" Note: This init will only work with neovim >= 0.7
+"
 " https://github.com/martinprobson/dotfiles/tree/master/nvim/.config/nvim
 " {{{GENERAL
 "
@@ -17,8 +19,6 @@ set hidden					" Allow buffer switching without saving first
 inoremap jj <ESC>				" Map jj to Esc
 tnoremap <Esc> <C-\><C-n>			" Map Esc/jj in terminal mode
 tnoremap jj <C-\><C-n>
-nnoremap <silent><leader>t :ToggleTerminal<CR>
-tnoremap <silent> <leader>t <C-\><C-n>:ToggleTerminal<CR>
 set number relativenumber			" Vim absolute and relative line numbers
 set noshowmode					" Do not show mode on last line (airline does this on status line)
 set hlsearch					" highlight all search matches
@@ -27,33 +27,16 @@ set path+=**
 set showmatch				        " show matched brackets
 set modeline
 set ignorecase smartcase
-"set spell spelllang=en_gb
 if (has("termguicolors"))
 	set termguicolors
 endif
 autocmd BufNewFile,BufRead *.scala set path+=**
 " }}}
-" {{{netrw
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" netrw
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-filetype plugin on
-let g:netrw_banner = 0
-let g:netrw_liststyle = 0
-let g:netrw_browse_split = 0
-let g:netrw_altv = 1
-" }}}
 " {{{plugins
 "
 " Plugins
 "
-if has('nvim-0.5')
-	call plug#begin(stdpath('data') . '/plugged')
-else
-	call plug#begin('~/.vim/plugged')
-endif
+call plug#begin(stdpath('data') . '/plugged')
 " colour scheme
 Plug 'https://github.com/morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -68,10 +51,7 @@ Plug 'https://github.com/suan/vim-instant-markdown.git'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/edkolev/tmuxline.vim'
-"Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdtree'
-"Plug 'ctrlpvim/ctrlp.vim'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
 Plug 'junegunn/fzf.vim'
@@ -81,20 +61,25 @@ Plug 'tpope/vim-fugitive'
 Plug 'caenrique/nvim-toggle-terminal'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*'}
-"
-"
-" Enable Language server/metals if we have NVIM 0.5
-"
-if has('nvim-0.5')
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'scalameta/nvim-metals'
-	Plug 'hrsh7th/nvim-compe'
-	Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
-	Plug 'nvim-lua/plenary.nvim'
-endif
+Plug 'neovim/nvim-lspconfig'
+Plug 'scalameta/nvim-metals'
+Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
 call plug#end()
+" }}}
+" {{{ToggleTerminal
+nnoremap <silent><leader>t :ToggleTerminal<CR>
+tnoremap <silent> <leader>t <C-\><C-n>:ToggleTerminal<CR>
+" }}}
+" {{{bufferline
+nnoremap <silent>L :BufferLineCycleNext<CR>
+nnoremap <silent>H :BufferLineCyclePrev<CR>
 lua << EOF
-require("bufferline").setup{}
+require("bufferline").setup{ options = {
+			offsets = {{filetype = "NvimTree", text = "File Explorer" , text_align = "left" }}
+		}
+}
 EOF
 " }}}
 " {{{fzf.vim
@@ -110,8 +95,12 @@ set updatetime=100
 nnoremap <silent> <leader>st :SignifyToggleHighlight<CR>
 nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " }}}
-" {{{NerdTree
-nnoremap <silent> <leader>f :NERDTreeToggle<CR>
+" {{{nvim-tree
+lua << EOF
+require("nvim-tree").setup{}
+EOF
+nnoremap <silent> <leader>f :NvimTreeToggle<CR>
+nnoremap <silent> <leader>n :NvimTreeFindFile<CR>
 " }}}
 " {{{COLOURS/STATUS LINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,7 +146,6 @@ map <leader>md :InstantMarkdownPreview
 "
 " Language server config
 "
-if has('nvim-0.5')
 augroup lsp
 au!
 au FileType scala,sbt lua require('metals').initialize_or_attach({})
@@ -293,13 +281,11 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 " Set maxmimum number of signs to show in signcolumn
 set signcolumn=auto:5
-endif
 " }}}
 " {{{Treesitter config
 "
 " Treesitter config
 "
-if has('nvim-0.5')
 :lua << EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -322,5 +308,4 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-endif
 " }}}
