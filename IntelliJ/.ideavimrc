@@ -4,11 +4,13 @@
 inoremap jj <ESC>
 set number relativenumber
 set showmode
-nmap <leader>l gt<CR>
-nmap <leader>h gT<CR>
+nmap <leader>l gt<CR>                       " cycle through tabs
+nmap <leader>h gT<CR>                       " cycle through tabs
 set ideajoin
 set hlsearch				    " highlight all search matches
 set incsearch
 set showmatch				    " show matched brackets
 set ignorecase smartcase
+Plug 'preservim/nerdtree'
+map <leader>f :NERDTreeToggle<CR>
 "
