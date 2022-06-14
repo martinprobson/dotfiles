@@ -58,7 +58,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
-Plug 'caenrique/nvim-toggle-terminal'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*'}
 Plug 'neovim/nvim-lspconfig'
@@ -67,10 +66,6 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 call plug#end()
-" }}}
-" {{{ToggleTerminal
-nnoremap <silent><leader>t :ToggleTerminal<CR>
-tnoremap <silent> <leader>t <C-\><C-n>:ToggleTerminal<CR>
 " }}}
 " {{{bufferline
 nnoremap <silent>L :BufferLineCycleNext<CR>
@@ -158,10 +153,10 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " Does not work
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR>
 autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.scala lua vim.lsp.buf.format(nil, 100)
 "
 "
 " Haskell Language Server setup
@@ -271,7 +266,7 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
-let g:diagnostic_enable_virtual_text = 0
+let g:diagnostic_enable_virtual_text = 1
 nnoremap <silent> [c          :NextDiagnostic<CR>
 nnoremap <silent> ]c          :PrevDiagnostic<CR>
 nnoremap <silent> go          :OpenDiagnostic<CR>
@@ -280,7 +275,7 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 " Set maxmimum number of signs to show in signcolumn
-set signcolumn=auto:5
+set signcolumn=auto:3
 " }}}
 " {{{Treesitter config
 "
