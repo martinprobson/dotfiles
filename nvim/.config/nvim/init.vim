@@ -149,8 +149,11 @@ augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " Does not work
 "nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+" SHow the full worksheet output
+nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
 " Does not work
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
