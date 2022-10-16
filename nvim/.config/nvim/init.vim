@@ -26,6 +26,7 @@ set wildmenu					" enhanced command line completion
 set path+=**
 set showmatch				        " show matched brackets
 set modeline
+set mouse=                  " Disable mouse
 set ignorecase smartcase
 if (has("termguicolors"))
 	set termguicolors
@@ -55,6 +56,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
@@ -62,9 +64,15 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
-Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
-Plug 'nvim-lua/plenary.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+" For vsnip users.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 " }}}
 " {{{bufferline
@@ -92,7 +100,11 @@ nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " }}}
 " {{{nvim-tree
 lua << EOF
-require("nvim-tree").setup{}
+require("nvim-tree").setup{
+	view = {
+		adaptive_size = true,
+		side = "left"},
+		}
 EOF
 nnoremap <silent> <leader>f :NvimTreeToggle<CR>
 nnoremap <silent> <leader>n :NvimTreeFindFile<CR>
@@ -141,17 +153,33 @@ map <leader>md :InstantMarkdownPreview
 "
 " Language server config
 "
+:lua << EOF
+  metals_config = require'metals'.bare_config()
+  metals_config.init_options.statusBarProvider = "on"
+  metals_config.settings = {
+     showImplicitArguments = true,
+     excludedPackages = {
+       "akka.actor.typed.javadsl",
+       "com.github.swagger.akka.javadsl"
+     }
+  }
+
+  metals_config.on_attach = function()
+    require'completion'.on_attach();
+  end
+
+EOF
 augroup lsp
 au!
-au FileType scala,sbt lua require('metals').initialize_or_attach({})
-"au FileType haskell require'lspconfig'.hls.setup{}
+au FileType scala,sbt lua require('metals').initialize_or_attach({metals_config})
+au FileType haskell require'lspconfig'.hls.setup{}
 augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-" Does not work
 "nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
-"nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 " SHow the full worksheet output
-nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
+"nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
 " Does not work
@@ -180,94 +208,78 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		}
 	)
 EOF
+" }}}
+" {{{cmp Setup
+"
+" cmp setup (completion)
+"
+set completeopt=menu,menuone,noselect
 
-:lua << EOF
-  metals_config = require'metals'.bare_config()
-  metals_config.settings = {
-     showImplicitArguments = true,
-     excludedPackages = {
-       "akka.actor.typed.javadsl",
-       "com.github.swagger.akka.javadsl"
-     }
+lua <<EOF
+  -- Set up nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    window = {
+      --completion = cmp.config.window.bordered(),
+      --documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Set up lspconfig.
+--  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  --require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+  require('lspconfig')['hls'].setup {
+    capabilities = capabilities
   }
-
-  metals_config.on_attach = function()
-    require'completion'.on_attach();
-  end
-
-EOF
-:lua << EOF
-vim.o.completeopt = "menuone,noselect"
-
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = false;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = false;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = false;
-    treesitter = true;
-  };
-}
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
---  elseif vim.fn.call("vsnip#available", {1}) == 1 then
---    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
 let g:diagnostic_enable_virtual_text = 1
 nnoremap <silent> [c          :NextDiagnostic<CR>
@@ -277,6 +289,7 @@ nnoremap <silent> go          :OpenDiagnostic<CR>
 set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
+set shortmess-=F
 " Set maxmimum number of signs to show in signcolumn
 set signcolumn=auto:3
 " }}}
