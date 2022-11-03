@@ -14,6 +14,7 @@
 " {{{GENERAL
 "
 syntax enable					" Syntax highlighting
+set timeoutlen=500
 set belloff=all					" Turn off sounds
 set hidden					" Allow buffer switching without saving first
 inoremap jj <ESC>				" Map jj to Esc
@@ -46,22 +47,19 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'GEverding/vim-hocon'
-" Markdown support
-Plug 'https://github.com/suan/vim-instant-markdown.git'
 " vimwiki 
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/edkolev/tmuxline.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mhinz/vim-signify'
-Plug 'junegunn/fzf' , { 'do' : { -> fzf#install () } }
-Plug 'junegunn/fzf.vim'
+" telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-lua/plenary.nvim'
-Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*'}
+"Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
 Plug 'nvim-treesitter/nvim-treesitter',{ 'do': ':TSUpdate'}
@@ -75,22 +73,24 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 " }}}
-" {{{bufferline
-nnoremap <silent>L :BufferLineCycleNext<CR>
-nnoremap <silent>H :BufferLineCyclePrev<CR>
-lua << EOF
-require("bufferline").setup{ options = {
-			offsets = {{filetype = "NvimTree", text = "File Explorer" , text_align = "left" }}
-		}
-}
-EOF
+" {{{startify
+" automatically save sessions on vim exit
+let g:startify_session_persistence = 1    
+" autoload a Session.vim if it exists
+let g:startify_session_autoload = 1
 " }}}
-" {{{fzf.vim
-nnoremap <silent><leader>e :<c-u>FZF<CR>
-nnoremap <silent><leader>eh :<c-u>FZF ~<CR>
-nnoremap <silent><leader>b :<c-u>Buffers<CR>
-nnoremap <silent><leader>g :<c-u>GFiles<CR>
-nnoremap <silent><leader>h :<c-u>History<CR>
+" {{{telescope
+:lua << EOF
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>e', builtin.find_files, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+vim.keymap.set('n', '<leader>g', builtin.git_files, {})
+vim.keymap.set('n', '<leader>h', builtin.oldfiles, {})
+vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, {})
+EOF
+"
 " }}}
 " {{{vim-signify
 " Default updatetime of 4000ms is not good for async update
@@ -130,25 +130,6 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_listsyms = '✗○◐●✓'
 " }}}
-" {{{WhichKey
-nnoremap <silent> <leader>      :<c-u>WhichKey '\'<CR>
-let g:which_key_map  = {}
-" Signify
-let g:which_key_map['s'] = { 'name' : 'signify' }
-let g:which_key_map.s.t = ['SignifyToggleHighlight', 'SignifyToggleHighlight' ]
-let g:which_key_map.s.d = ['SignifyHunkDiff', 'SignifyHunkDiff' ]
-" vimwiki
-let g:which_key_map['w'] = { 'name' : 'VimWiki' }
-" Markdown preview
-let g:which_key_map['m'] = { 'name' : 'Markdown preview' }
-let g:which_key_map.s.t = ['Markdown Preview', 'Markdown Preview' ]
-call which_key#register('\', "g:which_key_map")
-" }}}
-" {{{Markdown Preview
-" Instant markdown preview
-let g:instant_markdown_autostart = 0
-map <leader>md :InstantMarkdownPreview
-" }}}
 " {{{Language server config
 "
 " Language server config
@@ -174,16 +155,9 @@ au!
 au FileType scala,sbt lua require('metals').initialize_or_attach({metals_config})
 au FileType haskell require'lspconfig'.hls.setup{}
 augroup end
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-"nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
-" SHow the full worksheet output
-"nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
-" Does not work
-" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR>
 autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
