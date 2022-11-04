@@ -46,8 +46,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'GEverding/vim-hocon'
-" Markdown support
-Plug 'https://github.com/suan/vim-instant-markdown.git'
 " vimwiki 
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
@@ -116,10 +114,10 @@ nnoremap <silent> <leader>n :NvimTreeFindFile<CR>
 set background=dark
 let g:gruvbox_undercurl=1
 let g:gruvbox_contrast_dark='medium'
-"let g:airline_theme='gruvbox'
-let g:airline_theme='onedark'
+let g:airline_theme='gruvbox'
+"let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
-colorscheme onedark
+colorscheme gruvbox
 " }}}
 " {{{VIMWIKI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,11 +141,6 @@ let g:which_key_map['w'] = { 'name' : 'VimWiki' }
 let g:which_key_map['m'] = { 'name' : 'Markdown preview' }
 let g:which_key_map.s.t = ['Markdown Preview', 'Markdown Preview' ]
 call which_key#register('\', "g:which_key_map")
-" }}}
-" {{{Markdown Preview
-" Instant markdown preview
-let g:instant_markdown_autostart = 0
-map <leader>md :InstantMarkdownPreview
 " }}}
 " {{{Language server config
 "
