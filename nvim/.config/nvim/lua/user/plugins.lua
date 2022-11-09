@@ -61,7 +61,7 @@ return packer.startup(function(use)
 	-- polyglot
  	use { 'sheerun/vim-polyglot' }
 	
-	use { 'edkolev/tmuxline.vim' }
+	use { 'edkolev/tmuxline.vim', run = ':Tmuxline vim_statusline_2'  }
 	use { 'kyazdani42/nvim-tree.lua' }
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'mhinz/vim-startify' }

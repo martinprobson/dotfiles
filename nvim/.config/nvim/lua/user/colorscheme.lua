@@ -1,6 +1,6 @@
 --local colorscheme = "tokyonight"
---local colorscheme = "onedark"
-local colorscheme = "gruvbox"
+local colorscheme = "onedark"
+--local colorscheme = "gruvbox"
 vim.background=dark
 vim.g.gruvbox_undercurl=1
 vim.g.gruvbox_contrast_dark='medium'
