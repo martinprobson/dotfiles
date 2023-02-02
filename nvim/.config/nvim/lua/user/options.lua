@@ -24,7 +24,7 @@
 -- }}}
 local options = {
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
-  mouse = "",
+  mouse = "",                              -- disable the mouse
   completeopt = { "menu","menuone", "noselect" }, -- mostly just for cmp
   modeline = true,                         -- Allow use of modelines
 	hlsearch = true,												 -- highlight all search results (TODO might switch this off as can be annoying)
@@ -38,7 +38,7 @@ local options = {
   relativenumber = true,                   -- set relative numbered lines
   fileencoding = "utf-8",                  -- the encoding written to a file
   smartindent = true,                      -- make indenting smarter again
-  timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 500,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,                        -- faster completion (4000ms default)
   undofile = true,                         -- enable persistent undo
   expandtab = true,                        -- convert tabs to spaces
@@ -49,6 +49,7 @@ local options = {
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
+  autochdir = true                         -- Change directory to the current file
 }
 
 vim.opt.shortmess:append "c"

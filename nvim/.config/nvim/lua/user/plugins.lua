@@ -78,7 +78,7 @@ return packer.startup(function(use)
   use { 'scalameta/nvim-metals' }
 
 	-- Treesitter
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+	use { 'nvim-treesitter/nvim-treesitter'}
 
 	-- cmp
 	use { 'hrsh7th/cmp-nvim-lsp' }
@@ -91,6 +91,8 @@ return packer.startup(function(use)
 	use { 'hrsh7th/cmp-vsnip' }
 	use { 'hrsh7th/vim-vsnip' }
 
+	-- golang support
+	use {'fatih/vim-go' , run =  ':GoUpdateBinaries' }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
