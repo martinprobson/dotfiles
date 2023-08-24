@@ -11,3 +11,4 @@ require('gitsigns').setup()
 require('user.lualine')
 require('user.lsp')
 require('user.cmp')
+vim.g.startify_custom_header = ''

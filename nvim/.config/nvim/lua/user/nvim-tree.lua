@@ -1,4 +1,5 @@
 require("nvim-tree").setup{
+	respect_buf_cwd = true,
 	view = {
 		adaptive_size = true,
 		side = "left"},

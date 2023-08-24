@@ -14,13 +14,15 @@ let g:go_doc_popup_window = 1
 augroup gobindings
 	autocmd! gobindings
 	"-- GoRun
-	autocmd FileType go nmap <buffer><leader>gr <Plug>(go-run)
+	autocmd FileType go nmap <buffer><leader>gr <Plug>(go-run-split)
 	"-- go-test
 	autocmd FileType go nmap <buffer><leader>gt <Plug>(go-test)
 	"-- go-build
 	autocmd FileType go nmap <buffer><leader>gb <Plug>(go-build)
 	"-- go-fmt
 	autocmd FileType go nmap <buffer><leader>gf <Plug>(go-fmt)
+	"-- go-lint
+	autocmd FileType go nmap <buffer><leader>gl <Plug>(go-lint)
 augroup end
 "-- Turn of the default keymapping for GoDoc (K) 
 let g:go_doc_keywordprg_enabled = 0
@@ -48,8 +50,8 @@ end
 vim.cmd [[
 augroup lsp
 au!
-au FileType scala,sbt lua require('metals').initialize_or_attach({metals_config})
-au FileType haskell require'lspconfig'.hls.setup{}
+au FileType scala,sbt,java lua require('metals').initialize_or_attach({metals_config})
+au FileType haskell lua require'lspconfig'.hls.setup{}
 au FileType go,golang lua require'lspconfig'.gopls.setup{}
 augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -78,7 +80,7 @@ require'lspconfig'.hls.setup{}
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, { 
 		underline = true,
-		virtual_text = false,
+		virtual_text = true,
 		signs = true,
 		update_in_insert = true, 
 		}

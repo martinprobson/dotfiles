@@ -49,10 +49,8 @@ local options = {
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
-  autochdir = true                         -- Change directory to the current file
+  autochdir = false                        -- Change directory to the current file
 }
-
-vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

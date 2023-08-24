@@ -79,7 +79,7 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use { 'nvim-treesitter/nvim-treesitter'}
-
+	
 	-- cmp
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-buffer' }
