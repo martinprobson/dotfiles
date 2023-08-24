@@ -103,6 +103,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+else
+    export CLICOLOR=1
+    BASH_SILENCE_DEPRECATION_WARNING=1
 fi
 
 # colored GCC warnings and errors
@@ -158,11 +161,18 @@ alias h="history "
 alias hs="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
 
-
+pathadd ~/bin
+export JAVA_HOME="/Users/martin.robson/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu17.30.15-ca-jdk17.0.1-macosx_x64.tar.gz/zulu17.30.15-ca-jdk17.0.1-macosx_x64"
 GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/martin.robson/google-cloud-sdk/path.bash.inc' ]; then . '/Users/martin.robson/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/martin.robson/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/martin.robson/google-cloud-sdk/completion.bash.inc'; fi
 
 
 

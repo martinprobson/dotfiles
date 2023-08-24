@@ -18,6 +18,7 @@
 " {{{GENERAL
 "
 syntax enable					" Syntax highlighting
+let mapleader = "\\"
 set belloff=all					" Turn off sounds
 set hidden					" Allow buffer switching without saving first
 inoremap jj <ESC>				" Map jj to Esc
@@ -53,7 +54,7 @@ let g:netrw_altv = 1
 "
 " Plugins
 "
-if has('nvim-0.5')
+if has('nvim-0.7')
 	call plug#begin(stdpath('data') . '/plugged')
 else
 	call plug#begin('~/.vim/plugged')
@@ -86,7 +87,7 @@ Plug 'tpope/vim-fugitive'
 "
 " Enable Language server/metals if we have NVIM 0.5
 "
-if has('nvim-0.5')
+if has('nvim-0.7')
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'scalameta/nvim-metals'
 	Plug 'hrsh7th/nvim-compe'
@@ -155,7 +156,7 @@ map <leader>md :InstantMarkdownPreview
 "
 " Language server config
 "
-if has('nvim-0.5')
+if has('nvim-0.7')
 augroup lsp
 au!
 au FileType scala,sbt lua require('metals').initialize_or_attach({})
@@ -285,7 +286,7 @@ endif
 "
 " Treesitter config
 "
-if has('nvim-0.5')
+if has('nvim-0.7')
 :lua << EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
