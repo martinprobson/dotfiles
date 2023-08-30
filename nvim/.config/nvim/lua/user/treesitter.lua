@@ -11,7 +11,6 @@ require'nvim-treesitter.configs'.setup {
     "scala",
 		"java",
 		"vim",
-		"lua",
 		"json",
 		"dockerfile",
 		"haskell",

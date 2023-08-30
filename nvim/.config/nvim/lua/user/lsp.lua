@@ -57,7 +57,7 @@ augroup end
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 "nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> gn <cmd>lua vim.lsp.buf.rename()<CR>
 " SHow the full worksheet output
 "nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
@@ -85,5 +85,3 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		update_in_insert = true, 
 		}
 	)
-
-

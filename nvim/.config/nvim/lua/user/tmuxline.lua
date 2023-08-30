@@ -1,0 +1,4 @@
+--vim.cmd [[
+--let g:tmuxline_theme = 'iceberg'
+--let g:tmuxline_preset = 'iceberg'
+--]]

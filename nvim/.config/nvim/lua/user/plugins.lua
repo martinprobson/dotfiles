@@ -48,6 +48,10 @@ return packer.startup(function(use)
   use { "folke/tokyonight.nvim"}
   use { "lunarvim/darkplus.nvim"}
 
+	-- Indent guide
+--	use { 'nathanaelkane/vim-indent-guides' }
+	use {"lukas-reineke/indent-blankline.nvim"}
+
 	-- Status line
 	use { 'nvim-lualine/lualine.nvim' }
 
@@ -55,13 +59,26 @@ return packer.startup(function(use)
 	use { 'vimwiki/vimwiki' }
 	--
 	-- FZF
-	use { 'junegunn/fzf' , run = ':call fzf#install ()' }
-	use { 'junegunn/fzf.vim' }
+	--use { 'junegunn/fzf' , run = ':call fzf#install ()' }
+	--use { 'junegunn/fzf.vim' }
+	
+	--
+	--	TELESCOPE 
+	--
+	use { 'nvim-telescope/telescope.nvim', tag = '0.1.2',
+				 requires = { {'nvim-lua/plenary.nvim'} }
+	}
+	--
+	-- Telescope file browser
+	--
+	use { 'nvim-telescope/telescope-file-browser.nvim',
+				 requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
+	}
 
 	-- polyglot
  	use { 'sheerun/vim-polyglot' }
 	
-	use { 'edkolev/tmuxline.vim', run = ':Tmuxline vim_statusline_2'  }
+	use { 'edkolev/tmuxline.vim', run = ':Tmuxline iceberg'  }
 	use { 'kyazdani42/nvim-tree.lua' }
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'mhinz/vim-startify' }
@@ -71,7 +88,7 @@ return packer.startup(function(use)
 	use { 'lewis6991/gitsigns.nvim' }
 
 	use { 'kyazdani42/nvim-web-devicons' }
-	use { 'akinsho/bufferline.nvim' }
+	--use { 'akinsho/bufferline.nvim' }
 
 	-- LSP 
   use { 'neovim/nvim-lspconfig' }

@@ -1,6 +1,9 @@
-map('n','<leader>e',':<c-u>Files<CR>', {silent = true })
-map('n','<leader>t',':<c-u>Files ~<CR>', {silent = true })
-map('n','<leader>b',':<c-u>Buffers<CR>', {silent = true })
-map('n','<leader>g',':<c-u>GFiles<CR>', {silent = true })
-map('n','<leader>h',':<c-u>History<CR>', {silent = true })
-map('n','<leader>s',':<c-u>Rg<CR>',{silent = true })
+--
+-- Replaced by telescope.lua
+--
+--map('n','<leader>e',':<c-u>Files<CR>', {silent = true })
+--map('n','<leader>t',':<c-u>Files ~<CR>', {silent = true })
+--map('n','<leader>b',':<c-u>Buffers<CR>', {silent = true })
+--map('n','<leader>g',':<c-u>GFiles<CR>', {silent = true })
+--map('n','<leader>h',':<c-u>History<CR>', {silent = true })
+--map('n','<leader>s',':<c-u>Rg<CR>',{silent = true })
