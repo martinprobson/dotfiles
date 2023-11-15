@@ -48,6 +48,22 @@ local location = {
 	padding = 0,
 }
 
+local bsp_status = function()
+	if vim.bo.filetype == "scala" or vim.bo.filetype == "sbt" then
+		return "[" .. vim.g["metals_bsp_status"] .. "] " or ""
+	else 
+		return ""
+	end
+end
+
+local metals_status = function()
+	if vim.bo.filetype == "scala" or vim.bo.filetype == "sbt" then
+		return "<" .. vim.g["metals_status"] .. "> " or ""
+	else 
+		return ""
+	end
+end
+
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
@@ -73,7 +89,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { mode },
-		lualine_b = { branch, diagnostics },
+		lualine_b = { branch, diagnostics, metals_status, bsp_status },
 		lualine_c = { "filename" },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },

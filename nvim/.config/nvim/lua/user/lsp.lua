@@ -51,7 +51,7 @@ end
 vim.cmd [[
 augroup lsp
 au!
-au FileType scala,sbt,java lua require('metals').initialize_or_attach({metals_config})
+au FileType scala,sbt,java lua require('metals').initialize_or_attach(metals_config)
 au FileType haskell lua require'lspconfig'.hls.setup{}
 au FileType go,golang lua require'lspconfig'.gopls.setup{}
 augroup end
