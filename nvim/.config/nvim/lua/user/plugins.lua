@@ -80,7 +80,6 @@ return packer.startup(function(use)
 	
 	use { 'edkolev/tmuxline.vim', run = ':Tmuxline iceberg'  }
 	use { 'kyazdani42/nvim-tree.lua' }
-	use { 'nvim-lua/plenary.nvim' }
 	use { 'mhinz/vim-startify' }
 	--
 	-- git
@@ -92,21 +91,32 @@ return packer.startup(function(use)
 
 	-- LSP 
   use { 'neovim/nvim-lspconfig' }
-  use { 'scalameta/nvim-metals' }
+--	use 'mfussenegger/nvim-dap' 
+	use({
+		'scalameta/nvim-metals',
+		requires = {
+			{ 'nvim-lua/plenary.nvim'  },
+			{ 'nvim-lua/plenary.nvim'  },
+			{ 'rcarriga/nvim-dap-ui'   },
+			{ 'mfussenegger/nvim-dap' }
+	  },
+		})
 
 	-- Treesitter
 	use { 'nvim-treesitter/nvim-treesitter'}
 	
 	-- cmp
-	use { 'hrsh7th/cmp-nvim-lsp' }
-	use { 'hrsh7th/cmp-buffer' }
-	use { 'hrsh7th/cmp-path' }
-	use { 'hrsh7th/cmp-cmdline' }
-	use { 'hrsh7th/nvim-cmp' }
-
-	-- vsnip
-	use { 'hrsh7th/cmp-vsnip' }
-	use { 'hrsh7th/vim-vsnip' }
+	use({
+		'hrsh7th/nvim-cmp',
+		requires = {
+	    { 'hrsh7th/cmp-nvim-lsp' },
+		  { 'hrsh7th/cmp-buffer' },
+	    { 'hrsh7th/cmp-path' },
+	    { 'hrsh7th/cmp-vsnip' },
+	    { 'hrsh7th/vim-vsnip' },
+	    { 'hrsh7th/cmp-cmdline' },
+	  },
+		})
 
 	-- golang support
 	use {'fatih/vim-go' , run =  ':GoUpdateBinaries' }

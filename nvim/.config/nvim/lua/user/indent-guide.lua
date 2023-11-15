@@ -1,6 +1,4 @@
-require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
-    indent_blankline_use_treesitter = true
-}
+-- 
+-- See https://github.com/lukas-reineke/indent-blankline.nvim
+--
+require("ibl").setup() 

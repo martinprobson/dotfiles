@@ -45,13 +45,42 @@ metals_config.settings = {
    }
 }
 
-metals_config.on_attach = function()
-  require'completion'.on_attach();
+-- New
+local dap = require("dap")
+
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "RunOrTest",
+    metals = {
+      runType = "runOrTestFile",
+      --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+}
+-- END
+
+
+--  require'completion'.on_attach()
+
+metals_config.on_attach = function(client, bufnr)
+	require("metals").setup_dap()
+  require("dapui").setup()
 end
+
 vim.cmd [[
 augroup lsp
 au!
-au FileType scala,sbt,java lua require('metals').initialize_or_attach({metals_config})
+au FileType scala,sbt,java lua require('metals').initialize_or_attach(metals_config)
 au FileType haskell lua require'lspconfig'.hls.setup{}
 au FileType go,golang lua require'lspconfig'.gopls.setup{}
 augroup end
