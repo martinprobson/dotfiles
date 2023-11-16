@@ -14,3 +14,11 @@ require('user.lualine')
 require('user.lsp')
 require('user.cmp')
 require('user.indent-guide')
+--
+-- Map additional leader key on OS-X
+--
+if vim.fn.has('macunix') == 1 then
+  vim.cmd [[
+  nmap ` \
+  ]]
+end
