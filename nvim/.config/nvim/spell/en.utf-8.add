@@ -10,3 +10,9 @@ filesystem
 submodule
 submodules
 enums
+DMP
+JSP
+couchbase
+redis
+Javascript
+datastore
