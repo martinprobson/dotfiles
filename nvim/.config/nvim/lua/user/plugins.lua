@@ -65,7 +65,7 @@ return packer.startup(function(use)
 	--
 	--	TELESCOPE 
 	--
-	use { 'nvim-telescope/telescope.nvim', tag = '0.1.2',
+	use { 'nvim-telescope/telescope.nvim', tag = '0.1.6',
 				 requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	--
@@ -87,12 +87,18 @@ return packer.startup(function(use)
 	use { 'tpope/vim-fugitive' }
 	use { 'lewis6991/gitsigns.nvim' }
 
-	use { 'kyazdani42/nvim-web-devicons' }
+--	use { 'kyazdani42/nvim-web-devicons' }
+	use { 'nvim-tree/nvim-web-devicons' }
 	--use { 'akinsho/bufferline.nvim' }
 
 	-- LSP 
   use { 'neovim/nvim-lspconfig' }
   use { 'scalameta/nvim-metals' }
+
+	-- trouble
+  use { 'folke/trouble.nvim',
+				requires = {'nvim-tree/nvim-web-devicons' }
+	}
 
 	-- Treesitter
 	use { 'nvim-treesitter/nvim-treesitter'}

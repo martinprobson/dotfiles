@@ -44,10 +44,11 @@ metals_config.settings = {
      "com.github.swagger.akka.javadsl"
    }
 }
+metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-metals_config.on_attach = function()
-  require'completion'.on_attach();
-end
+--metals_config.on_attach = function()
+--  require'completion'.on_attach();
+--end
 vim.cmd [[
 augroup lsp
 au!
@@ -62,6 +63,7 @@ nnoremap <silent> gn <cmd>lua vim.lsp.buf.rename()<CR>
 " SHow the full worksheet output
 "nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+"nnoremap <silent> <C-c> 	  <cmd>lua vim.lsp.codelens.run()<CR>
 nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
 " Does not work
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -86,3 +88,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		update_in_insert = true, 
 		}
 	)
+--
+-- Nice icons in the gutter for diagnostics,
+-- see (https://github.com/folke/trouble.nvim/issues/52#issuecomment-863885779)
+local signs = {
+    -- icons / text used for a diagnostic
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
+    Other = "",
+}
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
