@@ -56,19 +56,20 @@ au FileType scala,sbt,java lua require('metals').initialize_or_attach(metals_con
 au FileType haskell lua require'lspconfig'.hls.setup{}
 au FileType go,golang lua require'lspconfig'.gopls.setup{}
 augroup end
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+" To be removed - replaced with LSP key mappings below
+"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 "nnoremap <silent> gD 		<cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gn <cmd>lua vim.lsp.buf.rename()<CR>
+"nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> gn <cmd>lua vim.lsp.buf.rename()<CR>
 " SHow the full worksheet output
 "nnoremap <silent> K     <cmd>lua require("metals").hover_worksheet()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+"nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 "nnoremap <silent> <C-c> 	  <cmd>lua vim.lsp.codelens.run()<CR>
-nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
+"nnoremap <silent> T     <cmd>lua require("metals.tvp").toggle_tree_view()<CR>
 " Does not work
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR>
+"nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
+"nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR>
 autocmd Filetype scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufWritePre *.scala lua vim.lsp.buf.format(nil, 100)
 ]]
@@ -91,6 +92,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 --
 -- Nice icons in the gutter for diagnostics,
 -- see (https://github.com/folke/trouble.nvim/issues/52#issuecomment-863885779)
+--
 local signs = {
     -- icons / text used for a diagnostic
     Error = "",
@@ -103,3 +105,19 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+--
+-- LSP key mappings
+--
+-- goto definition of object under cursor
+map('n','gd',':lua vim.lsp.buf.definition()<CR>',{ silent = true })
+-- Show type definition of item under cursor (hover)
+map('n','K',':lua vim.lsp.buf.hover()<CR>',{ silent = true })
+-- Rename the item under cursor (must goto definition first)
+map('n','gn',':lua vim.lsp.buf.rename()<CR>',{ silent = true })
+-- Show all references to item under cursor
+map('n','gr',':lua vim.lsp.buf.references()<CR>',{ silent = true })
+-- Toggle metals tree view pane
+map('n','T',':lua require("metals.tvp").toggle_tree_view()<CR>',{ silent = true })
+-- diagnostics prev/next
+map('n','<C-p>',':lua vim.diagnostic.goto_prev()<CR>',{ silent = true })
+map('n','<C-n>',':lua vim.diagnostic.goto_prev()<CR>',{ silent = true })

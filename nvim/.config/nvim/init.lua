@@ -14,6 +14,7 @@ require('user.lualine')
 require('user.lsp')
 require('user.cmp')
 require('user.indent-guide')
+require('user.trouble')
 --
 -- Map additional leader key on OS-X
 --
