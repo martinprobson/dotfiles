@@ -50,6 +50,14 @@ vim.api.nvim_set_keymap(
   ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
   { noremap = true }
 )
+--
+-- Telescope command history
+vim.api.nvim_set_keymap(
+  "n",
+  "<space>c",
+  ":Telescope command_history<CR>",
+  { noremap = true }
+)
 
 -- Telescope builtins
 vim.api.nvim_set_keymap(
