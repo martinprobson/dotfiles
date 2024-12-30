@@ -4,7 +4,6 @@ require('user.plugins')
 --require('user.bufferline')
 --require('user.fzf')
 require('user.telescope')
---require('user.tmuxline')
 require('user.nvim-tree')
 require('user.treesitter')
 require('user.colorscheme')
@@ -15,6 +14,7 @@ require('user.lsp')
 require('user.cmp')
 require('user.indent-guide')
 require('user.trouble')
+require('user.tmuxline')
 --
 -- Map additional leader key on OS-X
 --

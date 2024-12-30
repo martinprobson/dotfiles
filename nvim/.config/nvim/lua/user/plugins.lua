@@ -47,6 +47,7 @@ return packer.startup(function(use)
 	use { 'joshdick/onedark.vim' }
   use { "folke/tokyonight.nvim"}
   use { "lunarvim/darkplus.nvim"}
+	use { 'savq/melange-nvim' }
 
 	-- Indent guide
 --	use { 'nathanaelkane/vim-indent-guides' }

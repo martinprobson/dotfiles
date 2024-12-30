@@ -1,3 +1,5 @@
+nvim/.config/nvim/plugin/packer_compiled.lua
+nvim/.config/nvim/plugin/
 # use glob syntax.
 syntax: glob
 *.ser
@@ -52,4 +54,3 @@ metastore_db/
 
 # Maven shade
 dependency-reduced-pom.xml
-nvim/.config/nvim/plugin/packer_compiled.lua

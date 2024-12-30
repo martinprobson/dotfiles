@@ -4,13 +4,21 @@
 --
 -- javascript/ typescript setup
 --
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.ts_ls.setup{}
 --
 -- golang setup
 --
 vim.cmd [[
 "-- Show GoDoc in a popup window
+" Test
 let g:go_doc_popup_window = 1
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+let g:go_doc_balloon = 1
+let g:go_term_enabled = 1
+let g:go_term_reuse = 0
+" Test end
+
 augroup gobindings
 	autocmd! gobindings
 	"-- GoRun
@@ -37,6 +45,14 @@ let g:go_doc_keywordprg_enabled = 0
 metals_config = require'metals'.bare_config()
 metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
+	 inlayHints = {
+    hintsInPatternMatch = { enable = true },
+    implicitArguments = { enable = true },
+    implicitConversions = { enable = true },
+    inferredTypes = { enable = true },
+    typeParameters = { enable = true },
+		inferredTypes = { enable = true }
+	},
    showImplicitArguments = true,
 	 superMethodLensesEnabled = true,
    excludedPackages = {

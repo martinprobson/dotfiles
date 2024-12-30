@@ -1,4 +1,4 @@
 --vim.cmd [[
---let g:tmuxline_theme = 'iceberg'
---let g:tmuxline_preset = 'iceberg'
+-- let g:tmuxline_theme = 'vim_statusline_1'
+-- let g:tmuxline_preset = 'vim_statusline_1'
 --]]
