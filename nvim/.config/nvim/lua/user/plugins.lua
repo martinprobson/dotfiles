@@ -101,6 +101,9 @@ return packer.startup(function(use)
 				requires = {'nvim-tree/nvim-web-devicons' }
 	}
 
+	-- nvim tmux integration
+  use { 'christoomey/vim-tmux-navigator' }
+
 	-- Treesitter
 	use { 'nvim-treesitter/nvim-treesitter'}
 	
