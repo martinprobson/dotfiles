@@ -88,9 +88,7 @@ return packer.startup(function(use)
 	use { 'tpope/vim-fugitive' }
 	use { 'lewis6991/gitsigns.nvim' }
 
---	use { 'kyazdani42/nvim-web-devicons' }
 	use { 'nvim-tree/nvim-web-devicons' }
-	--use { 'akinsho/bufferline.nvim' }
 
 	-- LSP 
   use { 'neovim/nvim-lspconfig' }
