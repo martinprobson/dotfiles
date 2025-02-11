@@ -120,6 +120,12 @@ return packer.startup(function(use)
 
 	-- golang support
 	use {'fatih/vim-go' , run =  ':GoUpdateBinaries' }
+	--
+	-- whichkey
+	use {'folke/which-key.nvim'}
+	--
+	-- mini.nvim
+	use {'echasnovski/mini.nvim'}
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
