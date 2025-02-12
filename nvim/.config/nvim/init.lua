@@ -13,6 +13,7 @@ require('user.cmp')
 require('user.indent-guide')
 require('user.trouble')
 require('user.tmuxline')
+require('user.whichkey')
 --
 -- Map additional leader key on OS-X
 --
