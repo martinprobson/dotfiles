@@ -124,6 +124,10 @@ return packer.startup(function(use)
 	--
 	-- mini.nvim
 	use {'echasnovski/mini.nvim'}
+	--
+	-- Jenkinsfile linter
+	--
+  use { 'ckipp01/nvim-jenkinsfile-linter', requires = {'nvim-lua/plenary.nvim' } }	
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
