@@ -1,6 +1,6 @@
 local options = {
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
-  mouse = "",                              -- disable the mouse
+  mouse="a",
   completeopt = { "menu","menuone", "noselect" }, -- mostly just for cmp
   modeline = true,                         -- Allow use of modelines
 	hlsearch = true,												 -- highlight all search results (TODO might switch this off as can be annoying)
