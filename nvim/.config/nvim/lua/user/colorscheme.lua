@@ -1,5 +1,5 @@
-local colorscheme = "melange"
---local colorscheme = "tokyonight"
+--local colorscheme = "melange"
+local colorscheme = "tokyonight"
 --local colorscheme = "onedark"
 --local colorscheme = "gruvbox"
 vim.background=dark
