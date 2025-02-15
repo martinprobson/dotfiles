@@ -9,7 +9,7 @@ vim.keymap.set('n','<leader>b',builtin.buffers, {silent = true, desc = 'Buffers'
 vim.keymap.set('n','<leader>h',builtin.oldfiles, {silent = true, desc = 'Old files'})
 vim.keymap.set('n','<leader>g',builtin.git_files, {silent = true, desc = 'Git files'})
 vim.keymap.set('n','<leader>s',builtin.live_grep, {silent = true, desc = 'Live grep'})
-vim.keymap.set('n','<leader>k',builtin.keymaps, {silent = true, desc = 'Keymaps'})
+vim.keymap.set('n','<leader>k',function() builtin.keymaps({modes = {"n"}}) end, {silent = true, desc = 'Keymaps'})
 --
 -- Telescope file browser
 require('telescope').load_extension 'file_browser'
