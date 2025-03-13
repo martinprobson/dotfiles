@@ -2,8 +2,9 @@
 vim.g.have_nerd_font = true
 require("config.lazy")
 require("config.keymaps")
-require('java').setup()
-require('lspconfig').jdtls.setup({})
+-- Removed 13/03/2025
+--require('java').setup()
+--require('lspconfig').jdtls.setup({})
 --require("scratch")
 
 if vim.fn.has('macunix') == 1 then
