@@ -195,6 +195,13 @@ return {
           -- cmd = { ... },
           -- filetypes = { ... },
           -- capabilities = {},
+          --
+          -- MPR 13/03/2025
+          -- Added the following workspace table so that lua lsp knows about the vim global value
+          -- See https://github.com/neovim/neovim/discussions/24119
+          workspace = {
+            library = vim.api.nvim__get_runtime_file("", true)
+          },
           settings = {
             Lua = {
               completion = {

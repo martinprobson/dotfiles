@@ -2,7 +2,7 @@
 vim.g.have_nerd_font = true
 require("config.lazy")
 require("config.keymaps")
--- Removed 13/03/2025
+-- MPR Removed 13/03/2025 - installs Java 17 and sticks it on the path :-(
 --require('java').setup()
 --require('lspconfig').jdtls.setup({})
 --require("scratch")
