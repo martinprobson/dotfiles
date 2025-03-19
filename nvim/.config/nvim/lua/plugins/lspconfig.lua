@@ -177,7 +177,7 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        jdtls = {},
+        jdtls = {}, -- MPR: This line is required, otherwise lombok did not seem to work. The main setup is done in init.lua
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -200,7 +200,7 @@ return {
           -- Added the following workspace table so that lua lsp knows about the vim global value
           -- See https://github.com/neovim/neovim/discussions/24119
           workspace = {
-            library = vim.api.nvim__get_runtime_file("", true)
+            library = vim.api.nvim_get_runtime_file("", true)
           },
           settings = {
             Lua = {

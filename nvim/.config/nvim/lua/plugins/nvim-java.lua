@@ -1,3 +1,2 @@
--- Removed 13/03/2025
---return {'nvim-java/nvim-java'}
-return {}
+return {'nvim-java/nvim-java'}
+--return {}
