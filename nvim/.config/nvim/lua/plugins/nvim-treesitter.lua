@@ -8,11 +8,13 @@ return {
                     "scala",
                     "lua",
                     "java",
+                    "clojure",
                     "vim",
                     "json",
                     "dockerfile",
                     "haskell",
                     "go",
+                    "xml",
                     "bash"
         },
         highlight = {
