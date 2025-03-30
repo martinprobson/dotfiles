@@ -1,3 +1,8 @@
+
+# Emacs autosave files
+\#*\#
+.\#*
+
 nvim/.config/nvim/plugin/packer_compiled.lua
 nvim/.config/nvim/plugin/
 # use glob syntax.
