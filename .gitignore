@@ -59,3 +59,10 @@ metastore_db/
 
 # Maven shade
 dependency-reduced-pom.xml
+##
+## Emacs
+##
+emacs/.config/emacs/elpa
+emacs/.config/emacs/custom.el
+emacs/.config/emacs/eln-cache
+emacs/.config/emacs/transient
