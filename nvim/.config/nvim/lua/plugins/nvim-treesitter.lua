@@ -4,6 +4,9 @@ return {
     build = ":TSUpdate", -- This will run TSUpdate after the plugin is installed
     config = function()
       require("nvim-treesitter.configs").setup {
+        modules = {},
+        auto_install = false,
+        ignore_install = {},
         ensure_installed = {
                     "scala",
                     "lua",

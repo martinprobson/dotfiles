@@ -8,6 +8,9 @@ return {
                 },
                 opts = {
                           defaults = {
+                            preview = {
+                                hide_on_startup = true
+                            },
                             wrap_results = false,
                             winblend = 0
 
