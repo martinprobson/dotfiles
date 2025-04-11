@@ -161,3 +161,5 @@ GIT_PROMPT_ONLY_IN_REPO=0
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
 [ -f ~/.bash-git-prompt/gitprompt.sh ] && source ~/.bash-git-prompt/gitprompt.sh
 
+
+[ -f "/home/martinr/.ghcup/env" ] && . "/home/martinr/.ghcup/env" # ghcup-env
