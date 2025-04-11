@@ -34,6 +34,9 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-buffer',
+      'f3fora/cmp-spell',
     },
     config = function()
       -- See `:help cmp`
@@ -107,9 +110,21 @@ return {
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp', priority = 1000 },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
+          { name = 'cmdline' },
+          {
+            name = 'spell',
+            option = {
+              keep_all_entries = true,
+              preselect_correct_word = true,
+              enable_in_context = function()
+                return true
+              end,
+            },
+          },
         },
       }
     end,

@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 --- telescope
 --------------------------------------------------------------------------------------
 local builtin = require('telescope.builtin')
@@ -10,6 +10,10 @@ vim.keymap.set('n','<leader>h',builtin.oldfiles, {silent = true, desc = 'Old fil
 vim.keymap.set('n','<leader>g',builtin.git_files, {silent = true, desc = 'Git files'})
 vim.keymap.set('n','<leader>s',builtin.live_grep, {silent = true, desc = 'Live grep'})
 vim.keymap.set('n','<leader>k',function() builtin.keymaps({modes = {"n"}}) end, {silent = true, desc = 'Keymaps'})
+--
+-- Toggle spellchecking 
+--
+vim.keymap.set('n','<space>sp',function() vim.opt.spell = not(vim.opt.spell:get()) end, {silent = true, desc = 'Toggle spellchecking' })
 --
 -- Telescope file browser
 require('telescope').load_extension 'file_browser'
