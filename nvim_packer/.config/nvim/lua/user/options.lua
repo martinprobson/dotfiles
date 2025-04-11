@@ -49,7 +49,8 @@ local options = {
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
-  autochdir = false                        -- Change directory to the current file
+  autochdir = false,                       -- Change directory to the current file
+  spelllang={"en_gb"}
 }
 
 for k, v in pairs(options) do
@@ -59,3 +60,4 @@ end
 map('i','jj','<ESC>')                     -- Map jj to Esc
 tmap('<ESC>','<C-\\><C-n>')               -- Map Esc/jj in terminal mode
 tmap('jj','<C-\\><C-n>')                  -- Map Esc/jj in terminal mode
+
