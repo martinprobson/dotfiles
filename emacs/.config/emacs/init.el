@@ -28,6 +28,7 @@
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
@@ -196,3 +197,38 @@
 ;;
 (use-package magit
   :ensure t)
+;;;;;;;;;;;;;;;;;;;
+;; clojure
+;;;;;;;;;;;;;;;;;;;
+;;
+;; clojure-mode
+;;
+(unless (package-installed-p 'clojure-mode)
+  (package-install 'clojure-mode))
+;;
+;; CIDER
+;;
+(use-package cider
+  :ensure t
+  :pin melpa-stable)
+(setq tab-always-indent 'complete)
+
+;;
+;; org mode
+;;
+(use-package org)
+
+;;
+;; markdown mode
+;;
+(use-package markdown-mode
+  :ensure t
+  :init (setq markdown-command "markdown")
+  :bind (:map markdown-mode-map
+	      ("C-c C-e" . markdown-do)))
+(setq markdown-split-window-direction 'right)
+
+;;
+;; geiser
+;;
+(use-package geiser-guile)

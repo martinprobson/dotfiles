@@ -5,6 +5,8 @@
 
 nvim/.config/nvim/plugin/packer_compiled.lua
 nvim/.config/nvim/plugin/
+emacs/.config/emacs/recentf
+emacs/.config/emacs/url/
 # use glob syntax.
 syntax: glob
 *.ser
