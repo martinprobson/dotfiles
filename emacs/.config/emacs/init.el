@@ -145,15 +145,13 @@
 (cond
  ((string-equal system-type "gnu/linux")
   ;; Set font
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
-  (message "Hello from other!")
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 125)
   ;; Set leader key
   (evil-set-leader nil  (kbd "\\"))
  )
  ((string-equal system-type "darwin")
   ;; Set font
   (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
-  (message "Hello from darwin!")
   ;; Set leader key
   (evil-set-leader nil  (kbd "`"))
  )
