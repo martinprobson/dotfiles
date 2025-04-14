@@ -4,6 +4,9 @@
 ;; Remove startup message
 ;;(setq inhibit-startup-message t)
 
+;; You will most likely need to adjust this font size for your system!
+(defvar runemacs/default-font-size 180)
+
 ;; Remove UI elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -111,12 +114,24 @@
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode))
-(setq doom-modeline-minor-modes t)
+(setq doom-modeline-time-icon t)
+(setq doom-modeline-time-live-icon t)
+(setq doom-modeline-time-analogue-clock t)
+(setq doom-modeline-time-clock-size 0.7)
+(setq doom-modeline-minor-modes nil)
+(setq display-time-format "%H:%M")
 (display-battery-mode t)
+(display-time)
 
 ;; relative line numbering
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -144,16 +159,26 @@
 
 (cond
  ((string-equal system-type "gnu/linux")
-  ;; Set font
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 125)
-  ;; Set leader key
-  (evil-set-leader nil  (kbd "\\"))
+    ;; Font Configuration ----------------------------------------------------------
+    ;; Set default font
+    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 125)
+    ;; Set the fixed pitch face
+    (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 125)
+    ;; Set the variable pitch face
+    (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 125 :weight 'regular)
+    ;; Set leader key
+    (evil-set-leader nil  (kbd "\\"))
  )
  ((string-equal system-type "darwin")
-  ;; Set font
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
-  ;; Set leader key
-  (evil-set-leader nil  (kbd "`"))
+    ;; Font Configuration ----------------------------------------------------------
+    ;; Set default font
+    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
+    ;; Set the fixed pitch face
+    (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 175)
+    ;; Set the variable pitch face
+    (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 175 :weight 'regular)
+    ;; Set leader key
+    (evil-set-leader nil  (kbd "`"))
  )
 )
   
@@ -195,6 +220,22 @@
   (setq dired-sidebar-theme 'nerd-icons)
   (setq dired-sidebar-use-term-integration t)
   (setq dired-sidebar-use-custom-font t))
+;;
+;; Use dired-omit-mode to hide hidden files
+;;
+;; toggle with C-x M-o
+;;
+(setq dired-omit-mode t)
+(use-package dired
+  :ensure nil
+  :bind
+  (:map dired-mode-map ("." . dired-omit-mode))
+  :custom
+  (dired-omit-files (rx (seq bol ".")))
+  :hook
+  (dired-mode . dired-omit-mode)
+  :init
+  (with-eval-after-load 'dired (require 'dired-x)))
 
 (use-package nerd-icons :defer t)
 (use-package nerd-icons-dired
@@ -228,8 +269,69 @@
 ;;
 ;; org mode
 ;;
-(use-package org)
+(defun efs/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (visual-line-mode 1))
+;;
+;;
+;;
+(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "Ubuntu Sans" :weight 'regular :height (cdr face)))
+
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+;;
+;;
+;;
+(use-package org
+  :hook (org-mode . efs/org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾"
+	org-hide-emphasis-markers t)
+  (efs/org-font-setup))
+;;
+;;
+;;
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+;;
+;;
+;;
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 200
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
 ;;
 ;; markdown mode
 ;;

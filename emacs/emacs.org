@@ -1,0 +1,106 @@
+
+* EMACS
+
+** General Keys
+
+=C-x C-c= - Exit Emacs
+=C-g= - Cancel action
+
+*** Movement
+
+=C-v= - Move forward screen
+=M-v= - Move back screen
+
+#+BEGIN_SRC 
+                          C-p (previous line)
+                                  |
+         M-b (back word)          |               M-f (forward word)
+         C-b (back char) ---------|-------------- C-f (forward char)
+                                  |
+                          C-n (next line)
+
+#+END_SRC
+
+=C-a= / =C-e= - Begin/end of line
+=M-a= / =M-e= - Begin/end of sentence
+
+=M->= / =M-<= - End/Begin of buffer
+
+*** Cut and Paste
+
+=C-SPC= - Set mark
+=C-w= - Kill text
+=C-y= - Yank text
+=C-k= - kill line
+=M-y= - work through kill buffer
+
+=C-/= -  undo
+
+*** Files
+
+=C-x C-f= - Find a file
+=C-x C-s= - Save file
+=C-x s= - Save some buffers to their files.
+
+*** Buffers
+
+=C-x b=  -   Switch to buffer
+=C-x C-b= -    Buffer list
+
+*** Windows
+
+=C-x 1= - Kill all other windows
+=C-x 2= - Split into two windows 
+=C-x o= - Move to other window 
+=C-x 0= - Delete the selected window
+=C-M-v= - scroll in other window
+
+*** Search
+
+=C-s= / =C-r=  - Search forwards/backwards
+
+
+** Help
+
+| Key   | Action            |
+| C-h i | info              |
+| C-h v | Describe variable |
+| C-h r | Show emacs manual |
+
+** dired
+
+| key     | Action              |
+| C-x M-o | Toggle hidden files |
+|         |                     |
+
+** org-mode
+
+*** Org Mode Keys
+
+| Key          | Action                       |
+| TAB / S-TAB  | (un)fold                     |
+| C-c C-x C-b  | Toggle checkbox item         |
+| M-up/down    | Move a headline up or down   |
+| M-left/right | Promote or demote a headline |
+| M-ret        | Add a new headline           |
+
+*** TODOs
+
+| Key          | Action                         |
+| C-c C-t      | Toggle TODO item               |
+| S-left/right | Cycle workflow                 |
+| C-c / t      | Show TODOs in current document |
+|              |                                |
+
+***  Agenda (wip)
+
+| Key   | Action                                    |
+| C-c . | Add agenda item                           |
+| C-c a | Show agenda entries                       |
+| C-c [ | Add document to list of agenda files      |
+| C-c ] | Remove document from list of agenda files |
+|       |                                           |
+
+***  Markup
+
+You can make words *bold*, /italic/, _underlined_, =code= and ~verbatim~, and, if you must, +strike-through+.
