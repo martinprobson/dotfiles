@@ -19,8 +19,6 @@
 ;;
 (setopt custom-file "~/.config/emacs/custom.el")
 
-;; Set font
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 125)
 
 ;;
 ;; Initialize package sources
@@ -144,7 +142,23 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
-(evil-set-leader nil  (kbd "\\") )
+(cond
+ ((string-equal system-type "gnu/linux")
+  ;; Set font
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
+  (message "Hello from other!")
+  ;; Set leader key
+  (evil-set-leader nil  (kbd "\\"))
+ )
+ ((string-equal system-type "darwin")
+  ;; Set font
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 175)
+  (message "Hello from darwin!")
+  ;; Set leader key
+  (evil-set-leader nil  (kbd "`"))
+ )
+)
+  
 ;; Buffer list
 (evil-define-key 'normal 'global (kbd "<leader>b") 'ivy-switch-buffer)
 ;; Recent files
