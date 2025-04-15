@@ -1,0 +1,29 @@
+
+
+#+BEGIN_SRC sql
+
+select * from segmentation where workflow_id = (
+select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0);
+
+select * from step where workflow_id = (
+  select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0);
+
+
+delete from segmentation where workflow_id = (
+  select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0);
+
+delete from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0;
+
+delete from step where workflow_id = ( select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0);
+
+select * from bigquery_job_segmentation where segmentation_id in (
+select id from segmentation where workflow_id = (
+select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0)
+);
+
+select * from bigquery_job_step where step_id in (
+  select id from step where workflow_id = ( select id from workflow where batch_date = '2025-04-15' and event_trigger= 'batch_daily' and segment_id = 0)
+)
+  
+
+#+END_SRC

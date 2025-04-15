@@ -84,6 +84,15 @@
 | M-left/right | Promote or demote a headline |
 | M-ret        | Add a new headline           |
 
+*** Links
+
+| Key | Action |
+| C-c o | Open link |
+| C-c l  | Edit link |
+
+Links are of the form =[[file:foo.org][foo]]=
+Note: If link is of the form =file:/filename.txt= then the file will get created when =C-c o= is pressed.
+
 *** TODOs
 
 | Key          | Action                         |
@@ -104,3 +113,12 @@
 ***  Markup
 
 You can make words *bold*, /italic/, _underlined_, =code= and ~verbatim~, and, if you must, +strike-through+.
+
+***  Source code
+Use the =#+BEGIN_SRC <type>= =#+END_SRC= markers
+
+
+
+* GCP Segmentation
+
+[[file:./gcp_segmentation.org][GCP Segmentation]]
