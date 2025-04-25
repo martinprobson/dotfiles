@@ -347,3 +347,11 @@
 ;; geiser
 ;;
 (use-package geiser-guile)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (scheme . t)))
+(setq org-confirm-babel-evaluate nil)
+(use-package ox-gfm)
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))

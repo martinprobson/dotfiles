@@ -118,6 +118,17 @@ You can make words *bold*, /italic/, _underlined_, =code= and ~verbatim~, and, i
 Use the =#+BEGIN_SRC <type>= =#+END_SRC= markers
 
 
+** Geiser (Scheme REPL for emacs)
+
+Need to start Geiser first using =M-x geiser=
+
+| Key     | Action                                       |
+| C-c C-C | Evaluate region at cursor                    |
+| C-c C-a | Evaluate current buffer and switch to REPL   |
+| C-c C-z | Switch between Scheme REPL and Scheme buffer |
+| C-c C-q | Quit the REPL                                |
+| C-M-x   | Evaluate the current expression              |
+|         |                                              |
 
 * GCP Segmentation
 
