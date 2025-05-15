@@ -18,7 +18,7 @@ return {
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
-      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`lsp
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -177,7 +177,7 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        jdtls = {}, -- MPR: This line is required, otherwise lombok did not seem to work. The main setup is done in init.lua
+        -- jdtls = {}, -- MPR: This line is required, otherwise lombok did not seem to work. The main setup is done in init.lua
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
